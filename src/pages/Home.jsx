@@ -28,7 +28,6 @@ const Home = () => {
 <Info/>
 </div>
 
-<Footer/>
    </div>
         </>
      );

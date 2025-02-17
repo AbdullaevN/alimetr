@@ -9,6 +9,7 @@ import Preparation from "./components/Info/Preparation";
 import Ready from "./components/Info/Ready";
 import NeedLawyer from "./components/Info/NeedLawyer";
 import Test from "./components/Info/Test";
+import Footer from "./components/Footer/Footer";
  
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
 
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer/>
     </Router>
   );
 }

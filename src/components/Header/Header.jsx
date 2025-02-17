@@ -12,7 +12,7 @@ const Header = () => {
        <Link to={'/'}>
        <div className="flex items-center">
           <img src={logo} alt="Logo" className="h-10" />
-          <p className="text-white font-semibold text-lg ml-2">alimetr</p>
+          <p className="text-white font-semibold text-3xl ml-2 self-end">alimetr</p>
         </div>
        </Link>
 
