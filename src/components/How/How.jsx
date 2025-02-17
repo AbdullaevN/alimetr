@@ -4,8 +4,8 @@ const How = () => {
     return (
       <section className="py-8">
         <div className="container mx-auto px-6 ">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold">Как рассчитать алименты?</h2>
+          <div className="text-start mb-8">
+            <h2 className="text-2xl font-bold text-white">Как рассчитать алименты?</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
@@ -30,12 +30,14 @@ const How = () => {
                 description: 'На основе введенных данных калькулятор рассчитает сумму алиментов.',
               },
             ].map((item, index) => (
-              <div key={index} className="bg-white p-3 rounded-lg shadow-md">
-                <span className="flex flex-row items-center">
+              <div key={index} className="bg-white p-3 rounded-lg shadow-md w-full flex ">
+                <span className="flex flex-row items-start w-[10%]">
                   <h1 className="text-xl font-bold">{item.step}</h1>
-                <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
                 </span>
-                <p>{item.description}</p>
+             <div className="w-[90%]">
+             <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
+             <p>{item.description}</p>
+             </div>
               </div>
             ))}
           </div>

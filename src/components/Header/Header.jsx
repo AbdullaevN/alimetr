@@ -1,52 +1,77 @@
 import { useState } from "react";
- import logo from "../../assets/logo.png"; // Убедись, что путь к лого верный
+import logo from "../../assets/logo.png"; // Убедись, что путь к лого верный
+import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="bg-gradient-to-r from-[#2EA481] to-[#1DA29F] py-4 ">
-      <div className="container mx-auto flex items-end justify-between px-6 w-full">
+    <header className="bg-gradient-to-r from-[#2EA481] to-[#1DA29F] py-4">
+      <div className="container mx-auto flex items-center justify-between ">
         {/* Логотип */}
-        <div className="flex items-center">
+       <Link to={'/'}>
+       <div className="flex items-center">
           <img src={logo} alt="Logo" className="h-10" />
           <p className="text-white font-semibold text-lg ml-2">alimetr</p>
         </div>
+       </Link>
 
         {/* Десктопное меню */}
-        <nav className="hidden md:flex">
-          <ul className="flex text-white text-lg gap-8 font-bold">
-            <li className="hover:text-gray-200 cursor-pointer">Главная</li>
-            <li className="hover:text-gray-200 cursor-pointer">Форма заявления</li>
-            <li className="hover:text-gray-200 cursor-pointer">Блог</li>
-          </ul>
-        </nav>
+        <nav className="hidden md:flex flex-1 justify-center">
+  <ul className="flex text-white text-lg gap-8 font-bold">
+    <NavLink
+      to="/"
+      className={({ isActive }) => isActive ? "text-gray-700"  : "hover:text-gray-200"}
+    >
+      <li className="cursor-pointer">Главная</li>
+    </NavLink>
+
+    <NavLink
+      to="/forms"
+      className={({ isActive }) => isActive ? "text-gray-700"  : "hover:text-gray-200"}
+    >
+      <li className="cursor-pointer">Форма заявления</li>
+    </NavLink>
+
+    <NavLink
+      to="/blog"
+      className={({ isActive }) => isActive ? "text-gray-700" : "hover:text-gray-200"}
+    >
+      <li className="cursor-pointer">Блог</li>
+    </NavLink>
+  </ul>
+</nav>
 
         {/* Бургер-меню (мобильное) */}
         <div className="md:hidden">
           <button onClick={() => setMenuOpen(!menuOpen)} className="text-white text-2xl">
-            {menuOpen ?   <p>U</p> : <h2>g</h2>}
+            {menuOpen ? "X" : "☰"}
           </button>
         </div>
       </div>
 
-      {/* Мобильное меню (SideBar) */}
-      {menuOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-end z-50">
-          <div className="w-2/3 sm:w-1/3 bg-white p-6 shadow-lg">
+        {/* Мобильное меню (SideBar) */}
+        {menuOpen && (
+        <div className="fixed inset-0 bg-gradient-to-r from-[#2EA481] to-[#1DA29F] flex justify-end z-50">
+          <div className="w-full sm:w-full p-6">
             <button onClick={() => setMenuOpen(false)} className="text-gray-700 text-2xl mb-4">
-              Х
+              ✖
             </button>
-            <ul className="text-gray-900 text-lg space-y-4">
-              <li className="hover:text-gray-500 cursor-pointer">Главная</li>
-              <li className="hover:text-gray-500 cursor-pointer">Форма заявления</li>
-              <li className="hover:text-gray-500 cursor-pointer">Блог</li>
+            <ul className="flex text-white text-lg gap-8 font-bold flex-col text-start justify-start">
+              <NavLink to="/" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? "text-gray-700" : "hover:text-gray-200"}>
+                <li className="cursor-pointer">Главная</li>
+              </NavLink>
+              <NavLink to="/forms" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? "text-gray-700" : "hover:text-gray-200"}>
+                <li className="cursor-pointer">Форма заявления</li>
+              </NavLink>
+              <NavLink to="/blog" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? "text-gray-700" : "hover:text-gray-200"}>
+                <li className="cursor-pointer">Блог</li>
+              </NavLink>
             </ul>
           </div>
         </div>
       )}
     </header>
-
   );
 };
 

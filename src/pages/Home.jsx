@@ -8,26 +8,28 @@ import Footer from "../components/Footer/Footer";
 const Home = () => {
     return ( 
         <>
-        <Header/>
+   <div className="container">
+   {/* <Header/> */}
 
 
-        <section className="">
-            <div className="container">
-                <img className="object-cover w-[80%]" src={main} alt="" />
-            </div>
-        </section>
+<section className="">
+    <div className="">
+        <img className="object-cover w-[90%]" src={main} alt="" />
+    </div>
+</section>
 
 <How/>
-        <div className="flex items-center justify-center ">
-      <SalaryCalculator />
-    </div>
+<div className="flex items-center justify-center ">
+<SalaryCalculator />
+</div>
 
 
-    <div>
-        <Info/>
-    </div>
+<div>
+<Info/>
+</div>
 
-    <Footer/>
+<Footer/>
+   </div>
         </>
      );
 }
