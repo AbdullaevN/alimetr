@@ -1,30 +1,44 @@
+import { Link } from 'react-router-dom';
 import info1 from '../../assets/info1.png';
 import info2 from '../../assets/info2.png';
 import info3 from '../../assets/info3.png';
 import info4 from '../../assets/info4.png';
 
 const Info = () => {
+    const items = [
+        { img: info1, title: 'Подготовка документов для иска', link: '/preparation' },
+        { img: info2, title: 'Документы готовы. Что дальше?', link: '/ready' },
+        { img: info3, title: 'Нужен ли мне адвокат', link: '/need-lawyer' },
+        { img: info4, title: 'Как вести себя в суде', link: '/test' },
+    ];
+
     return ( 
         <section className="py-8">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-start mb-6 sm:mb-8">
                     <h2 className="text-xl sm:text-2xl font-bold text-white">Полезная информация</h2>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6">
-                    {[
-                        { img: info1, title: 'Подготовка документов для иска', link: '/preparation' },
-                        { img: info2, title: 'Документы готовы. Что дальше?', link: '/ready' },
-                        { img: info3, title: 'Нужен ли мне адвокат', link: '/need-lawyer' },
-                        { img: info4, title: 'Как вести себя в суде', link: '/test' },
-                    ].map((item, index) => (
-                        <a 
+                <div className="flex flex-col px-4 space-y-6">
+                    {items.map((item, index) => (
+                        <div 
                             key={index} 
-                            href={item.link} 
-                            className="bg-white p-3 sm:p-4 rounded-lg shadow-md flex items-center h-28 sm:h-32 w-full"
+                            className={`flex flex-col sm:flex-row items-center gap-4 ${
+                                index % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse'
+                            }`}
                         >
-                            <img src={item.img} alt={item.title} className="w-16 sm:w-20 h-16 sm:h-20 object-contain mr-3 sm:mr-4" />
-                            <h2 className="text-base sm:text-lg font-semibold">{item.title}</h2>
-                        </a>
+                            <div className="w-full sm:w-6/12">
+                                <img src={item.img} alt={item.title} className="h-60 object-contain w-full rounded-lg" />
+                            </div>
+                            <div className="w-full sm:w-6/12 text-white">
+                                <h2 className="text-lg sm:text-xl font-semibold">{item.title}</h2>
+                                <p className="mt-2">
+                                    Чтобы подать иск на алименты, вам потребуется несколько документов. Они помогут суду рассмотреть дело и вынести решение. Не переживайте, если у вас нет чего-то из списка — можно разобраться по ходу процесса.
+                                </p>
+                                <Link to={item.link}>
+                                    <button className="mt-4 text-white py-2 rounded-lg">Далее</button>
+                                </Link>
+                            </div>
+                        </div>
                     ))}
                 </div>
             </div>
