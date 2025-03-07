@@ -161,9 +161,11 @@ const SalaryCalculator = () => {
                 </div>
 
                 {/* Result Table */}
-                <div className="p-8 bg-white rounded-2xl">
+                {/* <div className="p-8 bg-white rounded-2xl "> */}
+                <div className="p-2 bg-white rounded-2xl px-3 md:px-2 flex flex-col mx-5 md:mx-2 ">
+
                     <div className="flex justify-center items-center mb-4">
-                        {result && <h1 className="text-4xl font-bold">{result}</h1>}
+                        {result && <h1 className="md:text-4xl text-xl  font-bold">{result}</h1>}
                     </div>
 
                     <table className="table-auto mx-auto mt-4">

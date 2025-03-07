@@ -5,7 +5,7 @@ const ApplicationBlock = () => {
         <div className="w-full my-4 p-4">
             <div className="flex flex-col items-center w-8/12 justify-end ">
                 <hr className="w-full h-0.2 bg-white mb-4" />
-                <div className='flex  items-center justify-end'>
+                <div className='flex  items-center justify-end md:flex-row flex-col'>
                 <h2 className="text-2xl font-bold text-white">Исковое заявление</h2>
                 <p className="text-white">О взыскании алиментов (в долях к заработку или иному доходу)</p>
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
