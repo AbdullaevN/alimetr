@@ -8,8 +8,15 @@ import FormPage from "./pages/Form";
 import Preparation from "./components/Info/Preparation";
 import Ready from "./components/Info/Ready";
 import NeedLawyer from "./components/Info/NeedLawyer";
-import Test from "./components/Info/Test";
+import Test from "./components/Info/HowToBehave";
 import Footer from "./components/Footer/Footer";
+import HowToBehave from "./components/Info/HowToBehave";
+import Procedure from "./components/Info/Procedure";
+import ProcedureCourt from "./components/Info/ProcedureCourt";
+import AfterDecision from "./components/Info/AfterDecision";
+import AlimonyIsNotPaid from "./components/Info/AlimonyIsNotPaid";
+import ChangeOfAlimony from "./components/Info/ChangeOfAlimony";
+import PastPeriods from "./components/Info/PastPeriods";
  
 function App() {
   return (
@@ -25,7 +32,13 @@ function App() {
         <Route path="/preparation" element={<Preparation />} />
         <Route path="/ready" element={<Ready />} />
         <Route path="/need-lawyer" element={<NeedLawyer />} />
-        <Route path="/test" element={<Test />} />
+        <Route path="/how-to-behave" element={<HowToBehave />} />
+        <Route path="/procedure" element={<Procedure />} />
+        <Route path="/procedure-court" element={<ProcedureCourt />} />
+        <Route path="/after-decision" element={<AfterDecision />} />
+        <Route path="/alimony-notpaid" element={<AlimonyIsNotPaid />} />
+        <Route path="/change-alimony" element={<ChangeOfAlimony />} />
+        <Route path="/past-periods" element={<PastPeriods />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

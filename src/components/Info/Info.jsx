@@ -9,7 +9,15 @@ const Info = () => {
         { img: info1, title: 'Подготовка документов для иска', link: '/preparation' },
         { img: info2, title: 'Документы готовы. Что дальше?', link: '/ready' },
         { img: info3, title: 'Нужен ли мне адвокат', link: '/need-lawyer' },
-        { img: info4, title: 'Как вести себя в суде', link: '/test' },
+        { img: info4, title: 'Как вести себя в суде', link: '/how-to-behave' },
+        { img: info2, title: 'Порядок подачи иска', link: '/procedure' },
+        { img: info2, title: 'Порядок подачи судебного приказа', link: '/procedure-court' },
+        { img: info2, title: 'Что делать после получения решения суда?', link: '/after-decision' },
+        { img: info2, title: 'Что делать, если алименты не выплачиваются?', link: '/alimony-notpaid' },
+        { img: info2, title: 'Можно ли изменить размер алиментов?', link: '/change-alimony' },
+        { img: info2, title: 'Алименты с неофициального дохода', link: '/inofficial-income' },
+        { img: info2, title: 'Алименты за прошлые периоды', link: '/past-periods' },
+
     ];
 
     return ( 
@@ -35,7 +43,7 @@ const Info = () => {
                                     Чтобы подать иск на алименты, вам потребуется несколько документов. Они помогут суду рассмотреть дело и вынести решение. Не переживайте, если у вас нет чего-то из списка — можно разобраться по ходу процесса.
                                 </p>
                                 <Link to={item.link}>
-                                    <button className="mt-4 text-white py-2 rounded-lg">Далее</button>
+                                    <button className="mt-4 text-white py-2 rounded-lg cursor-pointer">Далее</button>
                                 </Link>
                             </div>
                         </div>
