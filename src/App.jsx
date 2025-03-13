@@ -17,6 +17,7 @@ import AfterDecision from "./components/Info/AfterDecision";
 import AlimonyIsNotPaid from "./components/Info/AlimonyIsNotPaid";
 import ChangeOfAlimony from "./components/Info/ChangeOfAlimony";
 import PastPeriods from "./components/Info/PastPeriods";
+import Info from "./components/Info/Info";
  
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog" element={<Info />} />
         <Route path="/forms" element={<FormsList />} />
         <Route path="/form/:id" element={<FormPage />} />
 

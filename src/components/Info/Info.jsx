@@ -4,7 +4,7 @@ import info2 from '../../assets/info2.png';
 import info3 from '../../assets/info3.png';
 import info4 from '../../assets/info4.png';
 
-const Info = () => {
+const Info = ({ limit }) => {
     const items = [
         { img: info1, title: 'Подготовка документов для иска', link: '/preparation' },
         { img: info2, title: 'Документы готовы. Что дальше?', link: '/ready' },
@@ -17,17 +17,20 @@ const Info = () => {
         { img: info2, title: 'Можно ли изменить размер алиментов?', link: '/change-alimony' },
         { img: info2, title: 'Алименты с неофициального дохода', link: '/inofficial-income' },
         { img: info2, title: 'Алименты за прошлые периоды', link: '/past-periods' },
-
     ];
+
+    const displayedItems = limit ? items.slice(0, limit) : items;
 
     return ( 
         <section className="py-8">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-start mb-6 sm:mb-8">
-                    <h2 className="text-xl sm:text-2xl font-bold text-white">Полезная информация</h2>
+                    <h2 className="text-xl sm:text-3xl md:text-3xl font-bold text-white uppercase">Полезная информация</h2>
                 </div>
                 <div className="flex flex-col px-4 space-y-6">
-                    {items.map((item, index) => (
+                    {displayedItems.map((item, index) => (
+                       <>
+                        <hr  className='bg-[#D4D4D4] h-[0.2px] w-full border-none my-8' />
                         <div 
                             key={index} 
                             className={`flex flex-col sm:flex-row items-center gap-4 ${
@@ -47,6 +50,7 @@ const Info = () => {
                                 </Link>
                             </div>
                         </div>
+                       </>
                     ))}
                 </div>
             </div>

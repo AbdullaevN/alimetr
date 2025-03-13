@@ -89,6 +89,7 @@ const SalaryCalculator = () => {
 
     return (
         <section className="container">
+                <h1 className='text-3xl uppercase flex items-center text-white text-center justify-center py-10 font-bold'> Онлайн калькулятор</h1>
             <div className="flex flex-col md:flex-row items-center justify-center gap-8">
                 {/* Form */}
                 <div className="p-6 max-w-sm shadow-md rounded-2xl bg-[#FFFFFF82]">
