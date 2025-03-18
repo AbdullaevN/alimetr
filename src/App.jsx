@@ -18,6 +18,7 @@ import AlimonyIsNotPaid from "./components/Info/AlimonyIsNotPaid";
 import ChangeOfAlimony from "./components/Info/ChangeOfAlimony";
 import PastPeriods from "./components/Info/PastPeriods";
 import Info from "./components/Info/Info";
+import Assistant from "./components/Assistent/Assistant";
  
 function App() {
   return (
@@ -26,7 +27,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/blog" element={<Info />} />
-        <Route path="/forms" element={<FormsList />} />
+        <Route path="/forms" element={<Assistant />} />
+        {/* <Route path="/" element={<Assistant />} /> */}
         <Route path="/form/:id" element={<FormPage />} />
 
 
