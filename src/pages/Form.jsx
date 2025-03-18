@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { formsData } from "../components/Form/formsData";
 
@@ -11,6 +11,25 @@ const FormPage = () => {
   );
   const [childrenCount, setChildrenCount] = useState(1);
   const [modalContent, setModalContent] = useState("");
+
+
+
+useEffect(() => {
+  setFormData((prevData) => {
+    const newData = { ...prevData };
+    for (let i = 1; i <= childrenCount; i++) {
+      if (!newData[`child${i}`]) newData[`child${i}`] = "";
+    }
+    return newData;
+  });
+}, [childrenCount]);
+
+
+
+
+
+
+// 
 
   if (!form) {
     return <h2 className="text-white text-center mt-10">Форма не найдена</h2>;
@@ -30,8 +49,12 @@ const FormPage = () => {
     generateDoc(formData);
   };
 
-  // Функция для генерации документа
-  const generateDoc = (formData) => {
+   const generateDoc = (formData) => {
+    // const childrenList = Array.from({ length: childrenCount })
+    // .map((_, i) => `<p>${formData[`child${i + 1}`]} года рождения</p>`)
+    // .join("");
+
+
     let documentContent = `
       <h2>Документ</h2>
       <p><strong>В районный суд</strong></p>
@@ -40,7 +63,8 @@ const FormPage = () => {
       <p><strong>Ответчик:</strong> ${formData.defendantName}</p>
       <p><strong>Адрес ответчика:</strong> ${formData.defendantAddress}</p>
       <p><strong>ИСКОВОЕ ЗАЯВЛЕНИЕ</strong><br/>
-      о взыскании алиментов (в долях к заработку или иному доходу)</p>
+
+       о взыскании алиментов (в долях к заработку или иному доходу)</p>
       <p><strong>г.</strong> ${formData.marriageDate} вступила в брак с ${formData.defendantName}. 
       Решением суда от ${formData.courtDecisionDate} наш брак расторгнут. 
       Регистрация расторжения брака произведена ${formData.divorceDate} в отделе ЗАГС района.
@@ -135,56 +159,61 @@ const FormPage = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="px-2 rounded-lg w-7/12 py-16">
-          {form.fields.map((field) => (
-            <div key={field.name} className="mb-4">
-              <label className="block text-sm font-medium">{field.label}</label>
-              <input
-                type={field.type}
-                name={field.name}
-                placeholder={field.placehol}
-                value={formData[field.name]}
-                onChange={handleChange}
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-2xl text-[#9D9D9D] bg-[#F5F5F5]"
-              />
-            </div>
-          ))}
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {form.fields.map((field) => (
+      <div key={field.name} className="mb-4">
+        <label className="block text-sm font-medium">{field.label}</label>
+        <input
+          type={field.type}
+          name={field.name}
+          placeholder={field.placehol}
+          value={formData[field.name]}
+          onChange={handleChange}
+          className="mt-1 block w-full p-2 border border-gray-300 rounded-2xl text-[#9D9D9D] bg-[#F5F5F5]"
+        />
+      </div>
+    ))}
+  </div>
 
-          {/* Поле для ввода количества детей */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium">Количество детей</label>
-            <input
-              type="number"
-              min="1"
-              max="12"
-              value={childrenCount}
-              onChange={handleChildrenChange}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-2xl"
-            />
-          </div>
+  {/* Поле для ввода количества детей */}
+  <div className="mb-4">
+    <label className="block text-sm font-medium">Количество детей</label>
+    <input
+      type="number"
+      min="1"
+      max="12"
+      value={childrenCount}
+      onChange={handleChildrenChange}
+      className="mt-1 block w-full p-2 border border-gray-300 rounded-2xl"
+    />
+  </div>
 
-          {/* Динамические поля для детей */}
-          {Array.from({ length: childrenCount }).map((_, index) => (
-            <div key={index} className="mb-4">
-              <label className="block text-sm font-medium">
-                Имя ребенка {index + 1}
-              </label>
-              <input
-                type="text"
-                name={`child${index + 1}`}
-                value={formData[`child${index + 1}`] || ""}
-                onChange={handleChange}
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-2xl"
-              />
-            </div>
-          ))}
+  {/* Динамические поля для детей */}
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {Array.from({ length: childrenCount }).map((_, index) => (
+      <div key={index} className="mb-4">
+        <label className="block text-sm font-medium">
+          Имя ребенка {index + 1}
+        </label>
+        <input
+          type="text"
+          name={`child${index + 1}`}
+          value={formData[`child${index + 1}`] || ""}
+          onChange={handleChange}
+          className="mt-1 block w-full p-2 border border-gray-300 rounded-2xl"
+        />
+      </div>
+    ))}
+  </div>
 
-          <button
-            type="submit"
-            className="px-4 py-3 text-sm mt-4 bg-[#F5F5F5] text-[#121212] w-full rounded-2xl"
-          >
-            Открыть модальное окно
-          </button>
-        </form>
+  <button
+    type="submit"
+    className="px-4 py-3 text-sm mt-4 bg-[#F5F5F5] text-[#121212] w-full rounded-2xl"
+  >
+    Открыть модальное окно
+  </button>
+</form>
+
       </div>
 
       {/* Модальное окно */}

@@ -1,25 +1,35 @@
 import formImg from "../../assets/form.png"; // Импортируем изображение
  
 export const formsData = [
-    {
-      id: "alimony",
-      title: "Исковое заявление 1",
-      description: " о взыскании алиментов (в долях к заработку или иному доходу)",
-      image: formImg,
-      fields: [
-        { name: "courtName", label: "В районный суд", placehol:"Название суда", type: "text" },
-        { name: "claimantName", label: "Истец (ФИО)", placehol:"ФИО истца", type: "text" },
-        { name: "claimantAddress", label: "Адрес истца",  placehol:"Название суда",type: "text" },
-        { name: "defendantName", label: "Ответчик (ФИО)",  placehol:"ФИО ответчика",type: "text" },
-        { name: "defendantAddress", label: "Адрес ответчика",  placehol:"Название суда",type: "text" },
-        { name: "marriageDate", label: "Дата вступления в брак",  placehol:"Название суда",type: "date" },
-        { name: "courtDecision", label: "Решение суда", placehol:"Название суда", type: "text" },
-        { name: "divorceDate", label: "Дата расторжения брака",  placehol:"Название суда",type: "date" },
-        { name: "child1", label: "Первый ребенок (ФИО и дата рождения)",  placehol:"Название суда",type: "text" },
-        { name: "child2", label: "Второй ребенок (ФИО и дата рождения)",  placehol:"Название суда",type: "text" },
-        { name: "defendantBirthplace", label: "Место рождения ответчика", placehol:"Название суда", type: "text" },
-      ],
-    },
+  {
+    "id": "alimony",
+    "title": "Исковое заявление 1",
+    "description": "о взыскании алиментов (в долях к заработку или иному доходу)",
+    "image": "formImg",
+    "fields": [
+      { "name": "courtName", "label": "В районный суд", "placehol": "Название суда", "type": "text" },
+      { "name": "courtDistrict", "label": "Район суда", "placehol": "Название района", "type": "text" },
+      { "name": "claimantName", "label": "Истец (ФИО)", "placehol": "ФИО истца", "type": "text" },
+      { "name": "claimantAddress", "label": "Адрес истца", "placehol": "Адрес истца", "type": "text" },
+      { "name": "defendantName", "label": "Ответчик (ФИО)", "placehol": "ФИО ответчика", "type": "text" },
+      { "name": "defendantAddress", "label": "Адрес ответчика", "placehol": "Адрес ответчика", "type": "text" },
+      { "name": "marriageDate", "label": "Дата вступления в брак", "placehol": "mm/dd/yyyy", "type": "date" },
+      { "name": "courtDecisionDistrict", "label": "Решение суда района", "placehol": "Название района", "type": "text" },
+      { "name": "divorceDate", "label": "Дата расторжения брака", "placehol": "mm/dd/yyyy", "type": "date" },
+      { "name": "zagcDistrict", "label": "Район ЗАГС", "placehol": "Название района", "type": "text" },
+      { "name": "zagcDivorceDate", "label": "Дата регистрации расторжения брака", "placehol": "mm/dd/yyyy", "type": "date" },
+      { "name": "children", "label": "Дети", "type": "array", "items": [
+        { "name": "childName", "label": "ФИО ребенка", "placehol": "ФИО ребенка", "type": "text" },
+        { "name": "childBirthDate", "label": "Дата рождения ребенка", "placehol": "mm/dd/yyyy", "type": "date" },
+        { "name": "childCertificateNumber", "label": "Свидетельство о рождении ребенка", "placehol": "Номер свидетельства", "type": "text" },
+        { "name": "childCertificateDate", "label": "Дата выдачи свидетельства", "placehol": "mm/dd/yyyy", "type": "date" }
+      ]},
+      { "name": "alimonyAmount", "label": "Размер алиментов", "placehol": "Сумма алиментов", "type": "text" },
+      { "name": "defendantBirthDate", "label": "Дата рождения ответчика", "placehol": "mm/dd/yyyy", "type": "date" },
+      { "name": "divorceCertificateNumber", "label": "Копия свидетельства о расторжении брака №", "placehol": "Номер свидетельства", "type": "text" },
+      { "name": "divorceCertificateDate", "label": "Дата выдачи свидетельства о расторжении брака", "placehol": "mm/dd/yyyy", "type": "date" }
+    ]
+  },  
     {
       id: "property",
       title: "Исковое заявление 2",
