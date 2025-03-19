@@ -4,6 +4,8 @@ import { formsData } from "../components/Form/formsData";
 
 const FormPage = () => {
   const { id } = useParams();
+  // const [children, setChildren] = useState([]);
+
   const form = formsData.find((f) => f.id === id);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState(
@@ -11,22 +13,110 @@ const FormPage = () => {
   );
   const [childrenCount, setChildrenCount] = useState(1);
   const [modalContent, setModalContent] = useState("");
+  // 
+  // 
+  // 
+  // 
+  // 
+  // 
+  // 
+  // 
 
-
-
-useEffect(() => {
-  setFormData((prevData) => {
-    const newData = { ...prevData };
+  const generateAlimonyDoc = (formData, childrenCount) => {
+    let documentContent = `
+    <div style=" margin: 20px 10px";>
+      <div style="text-align: right; font-family: 'Times New Roman'; ">
+        <p><strong>В _________________ районный суд</strong></p>
+        <p><strong>Истец:</strong> ${formData.claimantName}</p>
+        <p><strong>Адрес истца:</strong> ${formData.claimantAddress}</p>
+        <p><strong>Ответчик:</strong> ${formData.defendantName}</p>
+        <p><strong>Адрес ответчика:</strong> ${formData.defendantAddress}</p>
+      </div>
+   <div style="display: flex; justify-content: center; align-items:center; flex-direction: column; font-weight:bold;">
+      <h3>ИСКОВОЕ ЗАЯВЛЕНИЕ</h3>
+      <p> ${formData.description}</p>
+   </div>
+      <p>С ответчицей(ком) я вступил(а) в брак "${formData.marriageDate}" и проживал(а) с ним(ней) совместно до ${formData.divorceDate}. Брак зарегистрирован в отделе ЗАГС ${formData.zagcDistrict}-ского района. От данного брака мы имеем ребенка:</p>
+    `;
+  
     for (let i = 1; i <= childrenCount; i++) {
-      if (!newData[`child${i}`]) newData[`child${i}`] = "";
+      documentContent += `
+        <p>${formData[`child${i}_name`]} - ${formData[`child${i}_birthdate`]} года рождения</p>
+      `;
     }
-    return newData;
-  });
-}, [childrenCount]);
+  
+    documentContent += `
+      <p>Совместная супружеская жизнь с ответчиком не сложилась, так как ${formData.reason}. Вследствие указанных причин считаю, что наша дальнейшая совместная жизнь и сохранение семьи невозможны, поэтому предоставление времени для примирения считаю нецелесообразным.</p>
+      <p>Брачные отношения между мной и ответчиком прекращены с "${formData.divorceDate}", с этого момента ответчик проживает отдельно и общее хозяйство нами не ведется. Спора о разделе имущества, являющегося нашей совместной собственностью, нет. По вопросу о содержании и воспитании детей спора нет, дети будут проживать со мной. Дети находятся полностью на моем иждивении, поскольку ответчик никакой материальной помощи на их содержание не оказывает.</p>
+      <p>На основании вышеизложенного, в соответствии со статьями 9, 22, 23, 24, 25, 85-87 Семейного кодекса КР, частью 1 статьи 4, статьями 25, 30, 31, 134, 135 Гражданского процессуального кодекса КР,</p>
+      <h3 style="display:flex; justify-content: center; font-weight:bold;">ПРОШУ:</h3>
+      <p>1. Расторгнуть брак между мной и ответчицей(ком) ${formData.defendantName}, зарегистрированный "${formData.marriageDate}" отделом ЗАГС ${formData.zagcDistrict}-ского района, актовая запись № ${formData.divorceCertificateNumber}.</p>
+      <p>2. Взыскать с ответчика(цы) ${formData.defendantName}, ${formData.defendantBirthDate} года рождения, в мою пользу алименты на содержание ребенка:</p>
+    `;
+  
+    for (let i = 1; i <= childrenCount; i++) {
+      documentContent += `
+        <p>${formData[`child${i}_name`]} - ${formData[`child${i}_birthdate`]} года рождения</p>
+      `;
+    }
+  
+    documentContent += `
+    <p>в размере одной четвертой части заработка и иных доходов до совершеннолетия ребенка.</p>
+    <h3 style="font-weight: bold; margin-top: 15px; font-style:italic;">Приложения:</h3>
+    <ol>
+    <li>1. Квитанция об уплате государственной пошлины;</li>
+    <li>2. Копия искового заявления для ответчика;</li>
+    <li>3. Доказательство направления другим лицам, участвующим в деле, копии искового заявления (почтовая квитанция);</li>
+    <li>4. Подлинник свидетельства о заключении брака №${formData.divorceCertificateNumber} от «${formData.divorceCertificateDate}»;</li>
+    <li>5. Копия паспорта истца;</li>
+    <li>6. Копии свидетельств о рождении детей;</li>
+    <li>7. Справка с ЦОН о регистрационном учете ребенка;</li>
+    <li>8. Документы о заработке и иных доходах ответчика;</li>
+  </ol>
+  
+  <div style="display:flex; justify-content: space-between; padding: 20px 1px">
+  <p>Истец: ${formData.claimantName}</p>
+  <p>Подпись: _________________</p>
+  </div>
+  <p>Дата: ${new Date().toLocaleDateString()}</p>
+    </div>
+  
+    `
+  ;
+  
+    return documentContent;
+  };
+  
+  const generateFixedSumDoc = (formData, childrenCount) => {
+    // Генерация документа для формы "о взыскании алиментов (в твердой денежной сумме)"
+    // Аналогично generateAlimonyDoc, но с другим текстом
+  };
+  
+  const generateEstablishPaternityDoc = (formData) => {
+    // Генерация документа для формы "об установлении отцовства и взыскании алиментов"
+    // Аналогично generateAlimonyDoc, но с другим текстом
+  };
 
 
+  
+  // 
+  // 
+  // 
+  // 
+  // 
+  // 
+  // 
 
-
+  useEffect(() => {
+    setFormData((prevData) => {
+      const newData = { ...prevData };
+      for (let i = 1; i <= childrenCount; i++) {
+        if (!newData[`child${i}_name`]) newData[`child${i}_name`] = "";
+        if (!newData[`child${i}_birthdate`]) newData[`child${i}_birthdate`] = "";
+      }
+      return newData;
+    });
+  }, [childrenCount]);
 
 
 // 
@@ -49,81 +139,26 @@ useEffect(() => {
     generateDoc(formData);
   };
 
-   const generateDoc = (formData) => {
-    // const childrenList = Array.from({ length: childrenCount })
-    // .map((_, i) => `<p>${formData[`child${i + 1}`]} года рождения</p>`)
-    // .join("");
-
-
-    let documentContent = `
-      <h2>Документ</h2>
-      <p><strong>В районный суд</strong></p>
-      <p><strong>Истец:</strong> ${formData.claimantName}</p>
-      <p><strong>Адрес истца:</strong> ${formData.claimantAddress}</p>
-      <p><strong>Ответчик:</strong> ${formData.defendantName}</p>
-      <p><strong>Адрес ответчика:</strong> ${formData.defendantAddress}</p>
-      <p><strong>ИСКОВОЕ ЗАЯВЛЕНИЕ</strong><br/>
-
-       о взыскании алиментов (в долях к заработку или иному доходу)</p>
-      <p><strong>г.</strong> ${formData.marriageDate} вступила в брак с ${formData.defendantName}. 
-      Решением суда от ${formData.courtDecisionDate} наш брак расторгнут. 
-      Регистрация расторжения брака произведена ${formData.divorceDate} в отделе ЗАГС района.
-      В настоящее время мы проживаем раздельно.</p>
-      <p>От данного брака мы имеем детей:</p>
-    `;
-
-    // Добавляем информацию о детях
-    for (let i = 1; i <= childrenCount; i++) {
-      documentContent += `
-        <p>${formData[`child${i}`]} года рождения</p>
-      `;
+  const generateDoc = (formData) => {
+    let documentContent = "";
+  
+    switch (form.id) {
+      case "alimony":
+        documentContent = generateAlimonyDoc(formData, childrenCount);
+        break;
+      case "fixedSum":
+        documentContent = generateFixedSumDoc(formData, childrenCount);
+        break;
+      case "establishPaternity":
+        documentContent = generateEstablishPaternityDoc(formData);
+        break;
+      default:
+        documentContent = "<p>Форма не найдена</p>";
+        break;
     }
-
-    documentContent += `
-      <p>Дети находятся на моем иждивении, ответчик никакой материальной помощи на их содержание не оказывает.</p>
-      <p>В соответствии с частью 1 статьи 85 Семейного кодекса КР, родители обязаны содержать своих несовершеннолетних детей. 
-      Согласно части 2 этой же статьи Семейного кодекса КР, в случае если родители (один из них) не предоставляют содержание своим несовершеннолетним детям, 
-      средства на их содержание (алименты) взыскиваются с родителей (одного из них) в судебном порядке на основании иска в суд, поданного от имени ребенка одним из родителей.</p>
-      <p>На основании изложенного, в соответствии со статьями 9, 85, 86 Семейного кодекса КР, частью 1 статьи 4, статьями 25, 30, 31, 134, 135 Гражданского процессуального кодекса КР,</p>
-      <p><strong>ПРОШУ:</strong></p>
-      <p>Взыскать с ответчика ${formData.defendantName}, года рождения, уроженца ${formData.defendantBirthplace}, в мою пользу алименты на содержание детей:</p>
-    `;
-
-    // Добавляем детей в просьбу
-    for (let i = 1; i <= childrenCount; i++) {
-      documentContent += `
-        <p>${formData[`child${i}`]} года рождения</p>
-      `;
-    }
-
-    documentContent += `
-      <p>в размере одной трети заработка и иных доходов до совершеннолетия детей.</p>
-      <p><strong>Приложения:</strong></p>
-      <ul>
-        <li>Доказательство направления другим лицам, участвующим в деле, копии искового заявления (почтовая квитанция);</li>
-        <li>Копия паспорта истца</li>
-        <li>Копия искового заявления</li>
-        <li>Копия свидетельства о расторжении брака от ${formData.divorceDate}</li>
-        <li>Копии свидетельств о рождении детей</li>
-    `;
-
-    // Добавляем информацию о каждом ребенке
-    for (let i = 1; i <= childrenCount; i++) {
-      documentContent += `
-        <li>${formData[`child${i}`]} года рождения</li>
-      `;
-    }
-
-    documentContent += `
-        <li>Документы о заработке ответчика</li>
-        <li>Справка с ЦОН о регистрационном учете детей.</li>
-      </ul>
-      <p>3/16/2025</p>
-      <p>Истец: ${formData.claimantName}</p>
-    `;
-
+  
     setModalContent(documentContent);
-    setIsModalOpen(true); // Открыть модальное окно
+    setIsModalOpen(true);
   };
 
   // Функция для скачивания документа
@@ -159,10 +194,10 @@ useEffect(() => {
         </div>
 
         <form onSubmit={handleSubmit} className="px-2 rounded-lg w-7/12 py-16">
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <div className="flex gap-4 flex-col w-full">
     {form.fields.map((field) => (
-      <div key={field.name} className="mb-4">
-        <label className="block text-sm font-medium">{field.label}</label>
+      <div key={field.name} className="mb-4 w-full">
+        <label className="block text-xl font-medium">{field.label}</label>
         <input
           type={field.type}
           name={field.name}
@@ -189,22 +224,39 @@ useEffect(() => {
   </div>
 
   {/* Динамические поля для детей */}
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-    {Array.from({ length: childrenCount }).map((_, index) => (
-      <div key={index} className="mb-4">
-        <label className="block text-sm font-medium">
+  <div className="grid grid-cols-1 gap-4">
+  {Array.from({ length: childrenCount }).map((_, index) => (
+    <div key={index} className="flex flex-row gap-4 w-full">
+      <div className="flex flex-col w-full">
+        <label className="text-sm font-medium">
           Имя ребенка {index + 1}
         </label>
         <input
           type="text"
-          name={`child${index + 1}`}
-          value={formData[`child${index + 1}`] || ""}
+          name={`child${index + 1}_name`}
+          value={formData[`child${index + 1}_name`] || ""}
+          onChange={handleChange}
+          className="mt-1 block w-full p-2 border border-gray-300 rounded-2xl text-[#9D9D9D] bg-[#F5F5F5]"
+        />
+      </div>
+
+      <div className="flex flex-col w-full">
+        <label className="text-sm font-medium">
+          Дата рождения ребенка {index + 1}
+        </label>
+        <input
+          type="date"
+          name={`child${index + 1}_birthdate`}
+          value={formData[`child${index + 1}_birthdate`] || ""}
           onChange={handleChange}
           className="mt-1 block w-full p-2 border border-gray-300 rounded-2xl"
         />
       </div>
-    ))}
-  </div>
+    </div>
+  ))}
+</div>
+
+ 
 
   <button
     type="submit"
@@ -219,20 +271,20 @@ useEffect(() => {
       {/* Модальное окно */}
       {isModalOpen && (
         <div className="modal fixed inset-0 bg-opacity-50 flex justify-center items-center text-black">
-          <div className="modal-content bg-white p-6 rounded-lg w-10/12 max-w-4xl h-96 overflow-y-auto">
+          <div className="modal-content bg-white p-6 rounded-lg w-10/12 max-w-4xl h-full overflow-y-auto">
             <button onClick={closeModal} className="absolute top-4 right-4 text-xl">X</button>
             <div className="modal-body" dangerouslySetInnerHTML={{ __html: modalContent }} />
             <div className="modal-footer flex justify-between mt-4">
               <button
                 onClick={closeModal}
-                className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md"
+                className="cursor-pointer px-4 py-3 text-sm mt-4 bg-gray-300 text-gray-800 rounded-2xl"
               >
                 Закрыть
               </button>
               <button
                 onClick={downloadDoc}
-                className="px-4 py-2 bg-blue-600 text-white rounded-md"
-              >
+                className="cursor-pointer px-4 py-3 text-sm mt-4 bg-[#65bec8] text-[#121212]  rounded-2xl"
+                >
                 Скачать документ
               </button>
             </div>
