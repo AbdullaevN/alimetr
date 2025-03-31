@@ -43,7 +43,7 @@ const FormCard = ({ form }) => {
             </p>
           </div>
           <div className="flex justify-end relative top-[-43px] right-[-109px] h-[12px] pb-0 mb-0 w-[35px]">
-            <Link to={`/form/${form.id}`} className="block">
+            <Link to={`/templates/${form.id}`} className="block">
               <svg
                 width="48"
                 height="48"

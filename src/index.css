@@ -15,7 +15,7 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to right, #2EA481, #1DA29F); /* градиент фона */
+  background: linear-gradient(to right, #2EA481, #1DA29F); 
   color: #333;
   line-height: 1.6;
 
@@ -26,6 +26,17 @@ body {
   max-width: 1300px;
   margin: 0 auto;
   padding: 0;
-  /* padding: 20px; */
-   /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  */
+ 
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;  
+  }
+
+  .footer-section {
+    width: 100%;  
+  }
 }

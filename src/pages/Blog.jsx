@@ -4,9 +4,7 @@ const Blog = () => {
     return ( 
         <>
         <section>
-            <div>
                 <Info/>
-            </div>
         </section>
         </>
      );

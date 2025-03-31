@@ -19,34 +19,46 @@ import ChangeOfAlimony from "./components/Info/ChangeOfAlimony";
 import PastPeriods from "./components/Info/PastPeriods";
 import Info from "./components/Info/Info";
 import Assistant from "./components/Assistent/Assistant";
+import Inofficial from "./components/Info/Inofficial";
+import { HelmetProvider } from "react-helmet-async";
+
+import "./i18n";
+
  
 function App() {
   return (
+    <HelmetProvider>
+
     <Router>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/blog" element={<Info />} />
-        <Route path="/forms" element={<Assistant />} />
-        {/* <Route path="/" element={<Assistant />} /> */}
-        <Route path="/form/:id" element={<FormPage />} />
+        <Route path="/info" element={<Info />} />
+        <Route path="/templates" element={<Assistant />} />
+         <Route path="/templates/:id" element={<FormPage />} />
 
-
-        <Route path="/preparation" element={<Preparation />} />
-        <Route path="/ready" element={<Ready />} />
+        <Route path="/docs-preparation" element={<Preparation />} />
+        <Route path="/next-steps" element={<Ready />} />
         <Route path="/need-lawyer" element={<NeedLawyer />} />
-        <Route path="/how-to-behave" element={<HowToBehave />} />
-        <Route path="/procedure" element={<Procedure />} />
-        <Route path="/procedure-court" element={<ProcedureCourt />} />
-        <Route path="/after-decision" element={<AfterDecision />} />
-        <Route path="/alimony-notpaid" element={<AlimonyIsNotPaid />} />
+        <Route path="/court-behavior" element={<HowToBehave />} />
+        <Route path="/file-lawsuit" element={<Procedure />} />
+        <Route path="/court-order" element={<ProcedureCourt />} />
+        <Route path="/after-court-decision" element={<AfterDecision />} />
+        <Route path="/no-payments" element={<AlimonyIsNotPaid />} />
         <Route path="/change-alimony" element={<ChangeOfAlimony />} />
-        <Route path="/past-periods" element={<PastPeriods />} />
+        <Route path="/unofficial-income" element={<Inofficial />} />
+        <Route path="/past-payments" element={<PastPeriods />} />
 
         <Route path="*" element={<NotFound />} />
+
+
+        {/* <Route path="/ru/*" element={<RussianVersion />} />
+        <Route path="/ky/*" element={<KyrgyzVersion />} /> */}
       </Routes>
       <Footer/>
     </Router>
+    </HelmetProvider>
+
   );
 }
 
