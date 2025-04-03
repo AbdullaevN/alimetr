@@ -399,18 +399,96 @@ export const generateAlimonyDoc = (formData, childrenCount, formatDate) => {
 
 
 
+// <<<<<<< HEAD
+// export const generatePaternityAlimonyDoc = (formData, formatDate) => {
+//   const formatDateSafe = (date) => formatDate(date) || '_________';
+//   const getMonthFromDate = (date) => {
+//     if (!date) return formData.separationMonth || '_________';
+//     const parts = formatDate(date).split(' ');
+//     return parts.length > 1 ? parts[1] : formData.separationMonth || '_________';
+//   };
+
+//   const witnessesList = Array.isArray(formData.witnesses) ? formData.witnesses : [];
+//   const witnessesContent = witnessesList.length > 0
+//     ? witnessesList.map((witness, index) => `${witness.name}${index < witnessesList.length - 1 ? ',' : ''}`).join(' ')
+//     : 'свидетели не указаны';
+// =======
+// export const generatePaternityAlimonyDoc = (formData, formatDate) => {
+//   const formatDateSafe = (date) => formatDate(date) || '_________';
+//   const getMonthFromDate = (date) => {
+//     if (!date) return formData.separationMonth || '_________';
+//     const parts = formatDate(date).split(' ');
+//     return parts.length > 1 ? parts[1] : formData.separationMonth || '_________';
+//   };
+
+//   const witnessesList = Array.isArray(formData.witnesses) ? formData.witnesses : [];
+//   const witnessesContent = witnessesList.length > 0
+//     ? witnessesList.map((witness, index) => `${witness.name}${index < witnessesList.length - 1 ? ',' : ''}`).join(' ')
+//     : 'свидетели не указаны';
+
+//   return `
+//     <div style="margin: 20px 10px; font-family: 'Times New Roman'; font-size: 14pt; line-height: 1.5;">
+//       <div style="text-align: right; margin-bottom: 20px;">
+//         <p>В ${formData.courtName || '____________________'} районный суд</p>
+//         <p>Истец: ${formData.claimantName || '__________________________'}</p>
+//         <p>Адрес: ${formData.claimantAddress || '__________________________'}</p>
+//         <p>Ответчик: ${formData.defendantName || '_______________________'}</p>
+//         <p>Адрес: ${formData.defendantAddress || '__________________________'}</p>
+//       </div>
+
+//       <div style="text-align: center; font-weight: bold; margin: 20px 50px;">
+//         <h3>ИСКОВОЕ ЗАЯВЛЕНИЕ</h3>
+//         <p>об установлении отцовства и взыскании алиментов</p>
+//       </div>
+
+//       <p style="text-indent: 15px; margin-bottom: 15px;">С ${formatDateSafe(formData.startDate)} по ${formatDateSafe(formData.endDate)} я состояла в фактических брачных отношениях с ${formData.defendantName || 'Ф.И.О.'}.</p>
+      
+//       <p>${formatDateSafe(formData.child1_birthdate)} я родила ${formData.child1_name || '____________________'} 
+//       </p>
+
+//       <p style="text-indent: 15px; margin-bottom: 15px;">Несмотря на то, что ответчик является отцом ребенка, он отказывается признать себя отцом ребенка и отказывается подать в органы ЗАГС заявление об установлении отцовства.</p>
+      
+//       <p>В ${getMonthFromDate(formData.endDate)} ${new Date(formData.endDate).getFullYear() || '______'} г. ${formData.defendantName || 'Ф.И.О. ответчика'} оставил меня и ребенка и перестал оказывать нам материальную помощь. Ребенок находится исключительно на моем иждивении.</p>
+      
+//       <p style="text-indent: 15px; margin-bottom: 15px;">Отцовство ответчика в отношении ${formData.child1_name || '____________________'} я подтверждаю следующим: почти в течение ${formData.cohabitationDuration || '_____'} лет ${formData.defendantName || 'Ф.И.О. ответчика'} постоянно проживал вместе со мной в моей квартире, и мы вели с ним общее хозяйство. Это могут подтвердить свидетели: ${witnessesContent}.</p>
+
+//       <div style="margin: 20px 0;">
+//         <h3 style="text-align: center; font-weight: bold;">ПРОШУ:</h3>
+//         <p>1. Установить, что ${formData.defendantName || 'Ф.И.О. ответчика'}, ${formatDateSafe(formData.defendantBirthDate)} года рождения, уроженец ${formData.defendantBirthPlace || '___________________________'}, является отцом ${formData.child1_name || '_________'}.</p>
+//         <p>2. Взыскать с ${formData.defendantName || 'Ф.И.О. ответчика'} в мою пользу на содержание ${formData.child1_name || '____________________'}  1/4 части заработка и иных доходов до совершеннолетия ${formData.child1_name || '____________________'}.</p>
+//       </div>
+
+//       <div style="margin-top: 30px;">
+//         <h3 style="font-weight: bold;">Приложения:</h3>
+//         <ol style="margin-left: 20px;">
+//           <li>Квитанция об оплате государственной пошлины;</li>
+//           <li>Доказательство направления другим лицам копии искового заявления;</li>
+//           <li>Копия паспорта истца;</li>
+//           <li>Копия свидетельства о рождении ребенка (№${formData.childCertificateNumber || '_____'});</li>
+//           <li>Письма ответчика, подтверждающие исковые требования;</li>
+//           <li>Справка о заработке ответчика;</li>
+//           <li>Справка о проживании ребенка с истцом;</li>
+//           <li>Копия искового заявления.</li>
+//         </ol>
+//       </div>
+
+//       <div style="display:flex; justify-content: space-between; margin-top: 50px;">
+//         <p>Истец: ${formData.claimantName || '__________________________'}</p>
+//         <div style="display:flex; flex-direction:column; align-items: flex-end;">
+//           <p>Подпись: _________________</p>
+//           <p>Дата: "${new Date().getDate()}" ${new Date().toLocaleString('ru', { month: 'long' })} ${new Date().getFullYear()} г.</p>
+//         </div>
+//       </div>
+//     </div>
+//   `;
+// };
+
+
+
+
+
 export const generatePaternityAlimonyDoc = (formData, formatDate) => {
   const formatDateSafe = (date) => formatDate(date) || '_________';
-  const getMonthFromDate = (date) => {
-    if (!date) return formData.separationMonth || '_________';
-    const parts = formatDate(date).split(' ');
-    return parts.length > 1 ? parts[1] : formData.separationMonth || '_________';
-  };
-
-  const witnessesList = Array.isArray(formData.witnesses) ? formData.witnesses : [];
-  const witnessesContent = witnessesList.length > 0
-    ? witnessesList.map((witness, index) => `${witness.name}${index < witnessesList.length - 1 ? ',' : ''}`).join(' ')
-    : 'свидетели не указаны';
 
   return `
     <div style="margin: 20px 10px; font-family: 'Times New Roman'; font-size: 14pt; line-height: 1.5;">
@@ -455,6 +533,61 @@ export const generatePaternityAlimonyDoc = (formData, formatDate) => {
           <li>Справка о заработке ответчика;</li>
           <li>Справка о проживании ребенка с истцом;</li>
           <li>Копия искового заявления.</li>
+        <p>${formData.courtName || '____________________'}</p>
+      </div>
+
+    <div style="text-align: right">
+      <div>
+        <p>Взыскатель: ${formData.claimantName || '__________________________'}</p>
+        <p>Адрес: ${formData.claimantAddress || '__________________________'}</p>
+        <p>Телефон: ${formData.claimantPhone || '__________________________'}</p>
+        <p>Email: ${formData.claimantEmail || '__________________________'}</p>
+      </div>
+
+      <div>
+        <p>Должник: ${formData.defendantName || '__________________________'}</p>
+        <p>Дата и место рождения: ${formatDateSafe(formData.defendantBirthDate)}, ${formData.defendantBirthPlace || '__________________________'}</p>
+        <p>Адрес: ${formData.defendantAddress || '__________________________'}</p>
+        <p>Телефон: ${formData.defendantPhone || '__________________________'}</p>
+        <p>Email: ${formData.defendantEmail || '__________________________'}</p>
+        <p>Место работы: ${formData.defendantWorkplace || '__________________________'}</p>
+      </div>
+    </div>
+
+      <div style="text-align: center; font-weight: bold; margin: 20px 50px;">
+        <h3>ИСКОВОЕ ЗАЯВЛЕНИЕ</h3>
+        <p>о вынесении судебного приказа о взыскании алиментов</p>
+      </div>
+
+      <p style="text-indent: 15px;">С ${formatDateSafe(formData.marriageStartDate)} по ${formatDateSafe(formData.marriageEndDate)} я состояла в браке с ${formData.defendantName || 'Ф.И.О. должника'}.</p>
+      <p>В браке у нас родились дети:</p>
+      <ul>
+        <li>${formData.child1_name || '__________________'} (${formatDateSafe(formData.child1_birthdate)})</li>
+      </ul>
+      <p>С ${formatDateSafe(formData.separationDate)} я проживаю отдельно, дети находятся на моем иждивении.</p>
+      <p>Должник добровольно алименты не выплачивает, соглашение не заключалось.</p>
+      
+     <div>
+  <h3 style="text-align: center; font-weight: bold;">ПРОШУ:</h3>
+  <p>
+    Вынести судебный приказ о взыскании с 
+    ${formData.defendantName || 'Ф. И. О. полностью'} 
+    в мою пользу алиментов на несовершеннолетних детей - 
+     <ul>
+        <li>${formData.child1_name || '__________________'} (${formatDateSafe(formData.child1_birthdate)})</li>
+      </ul>
+    в размере одной трети заработка и иного дохода Должника.
+  </p>
+</div>
+
+
+      <div>
+        <h3 style="font-weight: bold;">Приложение:</h3>
+        <ol style="margin-left: 20px;">
+          <li>Копия паспорта;</li>
+          <li>Копия свидетельства о расторжении брака № ${formData.divorceCertificateNumber || '_________'} от ${formatDateSafe(formData.divorceCertificateDate)};</li>
+          <li>Копии свидетельств о рождении детей № ${formData.birthCertificatesNumber || '_________'} от ${formatDateSafe(formData.birthCertificatesDate)};</li>
+          <li>Доверенность на представителя.</li>
         </ol>
       </div>
 
@@ -463,6 +596,10 @@ export const generatePaternityAlimonyDoc = (formData, formatDate) => {
         <div style="display:flex; flex-direction:column; align-items: flex-end;">
           <p>Подпись: _________________</p>
           <p>Дата: "${new Date().getDate()}" ${new Date().toLocaleString('ru', { month: 'long' })} ${new Date().getFullYear()} г.</p>
+        <p><strong>Заявитель:</strong> ${formData.claimantName || '__________________________'}</p>
+        <div style="display:flex; flex-direction:column; align-items: flex-end;">
+          <p><strong>Подпись:</strong> _________________</p>
+          <p><strong>Дата:</strong> ${formData.applicationDate ? formatDateSafe(formData.applicationDate) : new Date().toLocaleDateString('ru-RU')}</p>
         </div>
       </div>
     </div>

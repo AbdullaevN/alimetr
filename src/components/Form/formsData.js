@@ -109,34 +109,39 @@ export const formsData = [
 
   {
     id: "paternity_alimony",
-    title: "Исковое заявление",
-    description: "Об установлении отцовства и взыскании алиментов",
+    title: "Исковое заявление", 
+    description: "О вынесении судебного приказа о взыскании алиментов",
     image: formImg,
     fields: [
-      { name: "courtName", label: "Название суда", type: "text" },
-      { name: "claimantName", label: "Истец (ФИО)", type: "text" },
-      { name: "claimantAddress", label: "Адрес истца", type: "text" },
-      { name: "defendantName", label: "Ответчик (ФИО)", type: "text" },
-      { name: "defendantAddress", label: "Адрес ответчика", type: "text" },
-      { name: "startDate", label: "Дата начала отношений", type: "date" },
-      { name: "endDate", label: "Дата окончания отношений", type: "date" },
-      { name: "child1_name", label: "Имя ребенка", type: "text" },
-      { name: "child1_birthdate", label: "Дата рождения ребенка", type: "date" },
-      { name: "childCertificateNumber", label: "Номер свидетельства о рождении", type: "text" },
-      { name: "childCertificateDate", label: "Дата выдачи свидетельства", type: "date" },
-      { name: "defendantBirthDate", label: "Дата рождения ответчика", type: "date" },
-      { name: "defendantBirthPlace", label: "Место рождения ответчика", type: "text" },
-      { name: "cohabitationDuration", label: "Совместное проживание (лет)", type: "number" },
-      { name: "separationMonth", label: "Месяц прекращения помощи", type: "text" },
-      // { name: "childSupportPercentage", label: "Размер алиментов (1/4, 1/3 и т.д.)", type: "text" }
+      { name: "courtName", label: "Наименование суда", type: "text" },
+  
+      { name: "claimantName", label: "Ф. И. О. взыскателя", type: "text" },
+      { name: "claimantAddress", label: "Адрес взыскателя", type: "text" },
+      { name: "claimantPhone", label: "Телефон взыскателя", type: "text" },
+      { name: "claimantEmail", label: "Адрес электронной почты взыскателя", type: "email" },
+  
+      { name: "defendantName", label: "Ф. И. О. должника", type: "text" },
+      { name: "defendantBirthDate", label: "Дата рождения должника", type: "date" },
+      { name: "defendantBirthPlace", label: "Место рождения должника", type: "text" },
+      { name: "defendantAddress", label: "Адрес должника", type: "text" },
+      { name: "defendantPhone", label: "Телефон должника", type: "text" },
+      { name: "defendantEmail", label: "Адрес электронной почты должника", type: "email" },
+      { name: "defendantWorkplace", label: "Место работы должника", type: "text" },
+  
+      { name: "marriageStartDate", label: "Дата вступления в брак", type: "date" },
+      { name: "marriageEndDate", label: "Дата расторжения брака", type: "date" },
+  
+      { name: "separationDate", label: "Дата раздельного проживания", type: "date" },
+   
+      { name: "divorceCertificateNumber",   label: "Копия свидетельства о расторжении брака №",     placeholder: "Номер свидетельства",     type: "text"  },
+      { name: "divorceCertificateDate", label: "Дата свидетельства о расторжении брака",   placeholder: "Дата",   type: "date"     },
+      { name: "birthCertificatesNumber",         label: "Копии свидетельств о рождении детей №",         placeholder: "Номера свидетельств",   type: "text"  },
+      { name: "birthCertificatesDate",  label: "Дата свидетельств о рождении",   placeholder: "Дата",    type: "date"   },
+      
+      { name: "applicationDate", label: "Дата подачи заявления", type: "date" },
     ],
   },
-
-
-
-
-
-
+  
   {
     id: "paternity",
     title: "Исковое заявление ",
