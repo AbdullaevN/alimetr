@@ -5,7 +5,7 @@ export const formsData = [
 
   {
     id: "alimony_divorce",
-    title: "Исковое заявление 1",
+    title: "Исковое заявление ",
     description: "о расторжении брака и взыскании алиментов",
     image: "formImg",
     fields: [
@@ -31,7 +31,7 @@ export const formsData = [
 
   {
     id: "alimony_income_share",
-    title: "Исковое заявление 2",
+    title: "Исковое заявление ",
     description: "о взыскании алиментов в долях к заработку",
     image: formImg,
     fields: [
@@ -60,7 +60,7 @@ export const formsData = [
   },  
   {
     id: "alimony",
-    title: "Исковое заявление 3",
+    title: "Исковое заявление ",
     description: "о взыскании алиментов в твердой денежной сумме",
      image: "formImg",
     fields: [
@@ -83,9 +83,33 @@ export const formsData = [
  
 
 
+  // {
+  //   id: "paternity_alimony",
+  //   title: "Исковое заявление ",
+  //   description: "Об установлении отцовства и взыскании алиментов",
+  //   image: formImg,
+  //   fields: [
+  //     { name: "courtName", label: "Название суда", type: "text" },
+  //     { name: "claimantName", label: "Истец (ФИО)", type: "text" },
+  //     { name: "claimantAddress", label: "Адрес истца", type: "text" },
+  //     { name: "defendantName", label: "Ответчик (ФИО)", type: "text" },
+  //     { name: "defendantAddress", label: "Адрес ответчика", type: "text" },
+  //     { name: "startDate", label: "Дата начала отношений", type: "date" },
+  //     { name: "endDate", label: "Дата окончания отношений", type: "date" },
+  //     // { name: "childName", label: "Имя ребенка", type: "text" },
+  //     // { name: "childBirthDate", label: "Дата рождения ребенка", type: "date" },
+  //     // { name: "childCertificateNumber", label: "Номер свидетельства о рождении", type: "text" },
+  //     { name: "childCertificateDate", label: "Дата выдачи свидетельства о рождении", type: "date" },
+  //     { name: "defendantBirthDate", label: "Дата рождения ответчика", type: "date" },
+  //     { name: "defendantBirthPlace", label: "Место рождения ответчика", type: "text" },
+  //     // { name: "cohabitationDuration", label: "Совместное проживание (в годах)", type: "number" }, // Новое поле
+  //   ],
+  // },
+
+
   {
     id: "paternity_alimony",
-    title: "Исковое заявление 4",
+    title: "Исковое заявление",
     description: "Об установлении отцовства и взыскании алиментов",
     image: formImg,
     fields: [
@@ -96,19 +120,26 @@ export const formsData = [
       { name: "defendantAddress", label: "Адрес ответчика", type: "text" },
       { name: "startDate", label: "Дата начала отношений", type: "date" },
       { name: "endDate", label: "Дата окончания отношений", type: "date" },
-      // { name: "childName", label: "Имя ребенка", type: "text" },
-      // { name: "childBirthDate", label: "Дата рождения ребенка", type: "date" },
-      // { name: "childCertificateNumber", label: "Номер свидетельства о рождении", type: "text" },
-      { name: "childCertificateDate", label: "Дата выдачи свидетельства о рождении", type: "date" },
+      { name: "child1_name", label: "Имя ребенка", type: "text" },
+      { name: "child1_birthdate", label: "Дата рождения ребенка", type: "date" },
+      { name: "childCertificateNumber", label: "Номер свидетельства о рождении", type: "text" },
+      { name: "childCertificateDate", label: "Дата выдачи свидетельства", type: "date" },
       { name: "defendantBirthDate", label: "Дата рождения ответчика", type: "date" },
       { name: "defendantBirthPlace", label: "Место рождения ответчика", type: "text" },
-      // { name: "cohabitationDuration", label: "Совместное проживание (в годах)", type: "number" }, // Новое поле
+      { name: "cohabitationDuration", label: "Совместное проживание (лет)", type: "number" },
+      { name: "separationMonth", label: "Месяц прекращения помощи", type: "text" },
+      // { name: "childSupportPercentage", label: "Размер алиментов (1/4, 1/3 и т.д.)", type: "text" }
     ],
   },
 
+
+
+
+
+
   {
     id: "paternity",
-    title: "Исковое заявление 5",
+    title: "Исковое заявление ",
     description: "Об установлении отцовства и взыскании алиментов",
     image: formImg,
     fields: [

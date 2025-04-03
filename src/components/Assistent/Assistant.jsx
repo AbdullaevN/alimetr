@@ -8,16 +8,16 @@ const ApplicationBlock = ({ form }) => {
       <div className="flex flex-col gap-4 md:gap-3 justify-end py-4 items-center md:items-end">
         <hr className="w-full h-[1px] bg-white md:mb-4" />
         <div className="flex flex-col md:flex-row md:gap-10 w-full md:justify-between items-center text-center md:text-start">
-          <div className="flex flex-col md:flex-row md:gap-2 pt-4 w-full md:w-8/12">
-            <Link to={`/templates/${form.id}`}>
-              <h2 className="text-lg md:text-xl font-bold text-white uppercase">
-                {form.title}
-              </h2>
-            </Link>
-            <p className="text-white text-base md:text-xs mt-2 md:mt-0">
-              {form.description}
-            </p>
-          </div>
+        <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-25 pt-4 w-full md:w-8/12">
+  <Link to={`/templates/${form.id}`} className="min-w-[30%] md:min-w-[200px] max-w-full">
+    <h2 className="text-lg md:text-xl font-bold text-white uppercase break-words">
+      {form.title}
+    </h2>
+  </Link>
+  <p className="text-white text-base md:text-sm break-words flex-1">
+    {form.description}
+  </p>
+</div>
           <div className="flex justify-center md:justify-end w-full md:w-auto mt-4 md:mt-0">
             <Link to={`/templates/${form.id}`} className="block">
               <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">

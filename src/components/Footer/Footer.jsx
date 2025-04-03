@@ -1,7 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
+
 
 const Footer = () => {
+
+  const {t, i18n} = useTranslation()
+  // const [language, setLanguage]
+
+
+
   return (
     <footer className="bg-[#121212] text-white p-6">
       <div className="footer-container container mx-auto flex flex-col md:flex-row justify-between items-start text-left">
@@ -34,9 +42,9 @@ const Footer = () => {
         <div className="flex flex-col items-start mb-4 md:mb-0 w-full md:w-auto">
   <h3 className="font-semibold text-lg w-full">Навигация</h3>
   <ul className="mt-2 space-y-2 w-full">
-    <li><Link to="/" className="text-white hover:text-gray-400">Онлайн-калькулятор</Link></li>
-    <li><Link to="/templates" className="text-white hover:text-gray-400">Генератор заявлений</Link></li>
-    <li><Link to="/info" className="text-white hover:text-gray-400">Полезная информация</Link></li>
+    <li><Link to="/" className="text-white hover:text-gray-400">{t("header.calculator")}</Link></li>
+    <li><Link to="/templates" className="text-white hover:text-gray-400">{t("header.generator")}</Link></li>
+    <li><Link to="/info" className="text-white hover:text-gray-400">{t("header.info")}</Link></li>
   </ul>
 </div>
 

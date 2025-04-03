@@ -255,16 +255,159 @@ export const generateAlimonyDoc = (formData, childrenCount, formatDate) => {
 
 
 
+// export const generatePaternityAlimonyDoc = (formData, formatDate) => {
+//   const formatDateSafe = (date) => formatDate(date) || '_________';
+//   const getMonthFromDate = (date) => {
+//     if (!date) return '_________';
+//     const parts = formatDate(date).split(' ');
+//     return parts.length > 1 ? parts[1] : '_________';
+//   };
+
+//   const witnessesList = Array.isArray(formData.witnesses) ? formData.witnesses : [];
+
+//   const witnessesContent = witnessesList.length > 0
+//     ? witnessesList.map((witness, index) => `${witness.name}${index < witnessesList.length - 1 ? ',' : ''}`).join(' ')
+//     : 'свидетели не указаны';
+
+//   return `
+//     <div style="margin: 20px 10px; font-family: 'Times New Roman'; font-size: 14pt; line-height: 1.5;">
+//       <div style="text-align: right; margin-bottom: 20px;">
+//         <p>В ${formData.courtName || '____________________'} районный суд</p>
+//         <p>Истец: ${formData.claimantName || '__________________________'}</p>
+//         <p>Адрес: ${formData.claimantAddress || '__________________________'}</p>
+//         <p>Ответчик: ${formData.defendantName || '_______________________'}</p>
+//         <p>Адрес: ${formData.defendantAddress || '__________________________'}</p>
+//       </div>
+
+//       <div style="text-align: center; font-weight: bold; margin: 20px 50px;">
+//         <h3>ИСКОВОЕ ЗАЯВЛЕНИЕ</h3>
+//         <p>об установлении отцовства и взыскании алиментов</p>
+//       </div>
+
+//       <p>С ${formatDateSafe(formData.startDate)} по ${formatDateSafe(formData.endDate)} я состояла в фактических брачных отношениях с ${formData.defendantName || 'Ф.И.О.'}.</p>
+      
+//       <p>______________ ______ я родила ${formData.childName || '____________________'}.</p>
+
+//       <p>Несмотря на то, что ответчик является отцом ребенка, он отказывается признать себя отцом ребенка и отказывается подать в органы ЗАГС заявление об установлении отцовства.</p>
+      
+//       <p>В ${getMonthFromDate(formData.endDate)} ______  ${formData.defendantName || 'Ф.И.О. ответчика'} оставил меня и ребенка и перестал оказывать нам материальную помощь. Ребенок находится исключительно на моем иждивении.</p>
+      
+//       <p>Отцовство ответчика в отношении ${formData.childName || '____________________'} я подтверждаю следующим: почти в течение ${formData.cohabitationDuration || '_________'} лет ${formData.defendantName || 'Ф.И.О. ответчика'} постоянно проживал вместе со мной в моей квартире, и мы вели с ним общее хозяйство. Это могут подтвердить свидетели: ${witnessesContent}.</p>
+
+//       <div style="margin: 20px 0;">
+//         <h3 style="text-align: center; font-weight: bold;">ПРОШУ:</h3>
+//         <p>1. Установить, что ${formData.defendantName || 'Ф.И.О. ответчика'}, ${formatDateSafe(formData.defendantBirthDate)} года рождения., уроженец ${formData.defendantBirthPlace || '___________________________'}, является отцом ${formData.childName || '_________'}.</p>
+//         <p>2. Взыскать с ${formData.defendantName || 'Ф.И.О. ответчика'} в мою пользу алименты в размере 1/4 части заработка и иных доходов до совершеннолетия ${formData.childName || '____________________'}.</p>
+//       </div>
+
+//       <div style="margin-top: 30px;">
+//         <h3 style="font-weight: bold;">Приложения:</h3>
+//         <ol style="margin-left: 20px;">
+//           <li>Квитанция об оплате государственной пошлины;</li>
+//           <li>Доказательство направления другим лицам копии искового заявления (почтовая квитанция);</li>
+//           <li>Копия паспорта истца;</li>
+//           <li>Копия свидетельства о рождении ребенка;</li>
+//           <li>Письма ${formData.defendantName || 'Ф.И.О. ответчика'}, подтверждающие исковые требования;</li>
+//           <li>Справка о заработке ${formData.defendantName || 'Ф.И.О. ответчика'};</li>
+//           <li>Справка домкома/квартального о проживании ребенка с истцом;</li>
+//           <li>Копия искового заявления.</li>
+//         </ol>
+//       </div>
+
+//         <div style="display:flex; justify-content: space-between; padding: 20px 1px">
+//         <p>Истец: ${formData.claimantName}</p>
+//         <div style="display:flex; flex-direction:column">
+//           <p>Подпись: _________________</p>
+//           <p style="width: 100%">Дата: ${new Date().toLocaleDateString()}</p>
+//         </div>
+//       </div>
+//     </div>
+//   `;
+// };
+
+
+
+// export const generatePaternityAlimonyDoc = (formData, formatDate) => {
+//   const formatDateSafe = (date) => formatDate(date) || '_________';
+//   const getMonthFromDate = (date) => {
+//     if (!date) return '_________';
+//     const parts = formatDate(date).split(' ');
+//     return parts.length > 1 ? parts[1] : '_________';
+//   };
+
+//   const witnessesList = Array.isArray(formData.witnesses) ? formData.witnesses : [];
+
+//   const witnessesContent = witnessesList.length > 0
+//     ? witnessesList.map((witness, index) => `${witness.name}${index < witnessesList.length - 1 ? ',' : ''}`).join(' ')
+//     : 'свидетели не указаны';
+
+//   return `
+//     <div style="margin: 20px 10px; font-family: 'Times New Roman'; font-size: 14pt; line-height: 1.5;">
+//       <div style="text-align: right; margin-bottom: 20px;">
+//         <p>В ${formData.courtName || '____________________'} районный суд</p>
+//         <p>Истец: ${formData.claimantName || '__________________________'}</p>
+//         <p>Адрес: ${formData.claimantAddress || '__________________________'}</p>
+//         <p>Ответчик: ${formData.defendantName || '_______________________'}</p>
+//         <p>Адрес: ${formData.defendantAddress || '__________________________'}</p>
+//       </div>
+
+//       <div style="text-align: center; font-weight: bold; margin: 20px 50px;">
+//         <h3>ИСКОВОЕ ЗАЯВЛЕНИЕ</h3>
+//         <p>об установлении отцовства и взыскании алиментов</p>
+//       </div>
+
+//       <p>С ${formatDateSafe(formData.startDate)} по ${formatDateSafe(formData.endDate)} я состояла в фактических брачных отношениях с ${formData.defendantName || 'Ф.И.О.'}.</p>
+      
+//       <p>${formatDateSafe(formData.childCertificateDate)} я родила ${formData.child1_name || '____________________'}.</p>
+
+//       <p>Несмотря на то, что ответчик является отцом ребенка, он отказывается признать себя отцом ребенка и отказывается подать в органы ЗАГС заявление об установлении отцовства.</p>
+      
+//       <p>В ${getMonthFromDate(formData.endDate)} ______  ${formData.defendantName || 'Ф.И.О. ответчика'} оставил меня и ребенка и перестал оказывать нам материальную помощь. Ребенок находится исключительно на моем иждивении.</p>
+      
+//       <p>Отцовство ответчика в отношении ${formData.child1_name || '____________________'} я подтверждаю следующим: почти в течение ${formData.cohabitationDuration || '_________'} лет ${formData.defendantName || 'Ф.И.О. ответчика'} постоянно проживал вместе со мной в моей квартире, и мы вели с ним общее хозяйство. Это могут подтвердить свидетели: ${witnessesContent}.</p>
+
+//       <div style="margin: 20px 0;">
+//         <h3 style="text-align: center; font-weight: bold;">ПРОШУ:</h3>
+//         <p>1. Установить, что ${formData.defendantName || 'Ф.И.О. ответчика'}, ${formatDateSafe(formData.defendantBirthDate)} года рождения, уроженец ${formData.defendantBirthPlace || '___________________________'}, является отцом ${formData.child1_name || '_________'}.</p>
+//         <p>2. Взыскать с ${formData.defendantName || 'Ф.И.О. ответчика'} в мою пользу алименты в размере 1/4 части заработка и иных доходов до совершеннолетия ${formData.child1_name || '____________________'}.</p>
+//       </div>
+
+//       <div style="margin-top: 30px;">
+//         <h3 style="font-weight: bold;">Приложения:</h3>
+//         <ol style="margin-left: 20px;">
+//           <li>Квитанция об оплате государственной пошлины;</li>
+//           <li>Доказательство направления другим лицам копии искового заявления (почтовая квитанция);</li>
+//           <li>Копия паспорта истца;</li>
+//           <li>Копия свидетельства о рождении ребенка;</li>
+//           <li>Письма ${formData.defendantName || 'Ф.И.О. ответчика'}, подтверждающие исковые требования;</li>
+//           <li>Справка о заработке ${formData.defendantName || 'Ф.И.О. ответчика'};</li>
+//           <li>Справка домкома/квартального о проживании ребенка с истцом;</li>
+//           <li>Копия искового заявления.</li>
+//         </ol>
+//       </div>
+
+//       <div style="display:flex; justify-content: space-between; padding: 20px 1px">
+//         <p>Истец: ${formData.claimantName || '__________________________'}</p>
+//         <div style="display:flex; flex-direction:column">
+//           <p>Подпись: _________________</p>
+//           <p style="width: 100%">Дата: ${new Date().toLocaleDateString()}</p>
+//         </div>
+//       </div>
+//     </div>
+//   `;
+// };
+
+
+
 export const generatePaternityAlimonyDoc = (formData, formatDate) => {
   const formatDateSafe = (date) => formatDate(date) || '_________';
   const getMonthFromDate = (date) => {
-    if (!date) return '_________';
+    if (!date) return formData.separationMonth || '_________';
     const parts = formatDate(date).split(' ');
-    return parts.length > 1 ? parts[1] : '_________';
+    return parts.length > 1 ? parts[1] : formData.separationMonth || '_________';
   };
 
   const witnessesList = Array.isArray(formData.witnesses) ? formData.witnesses : [];
-
   const witnessesContent = witnessesList.length > 0
     ? witnessesList.map((witness, index) => `${witness.name}${index < witnessesList.length - 1 ? ',' : ''}`).join(' ')
     : 'свидетели не указаны';
@@ -284,49 +427,47 @@ export const generatePaternityAlimonyDoc = (formData, formatDate) => {
         <p>об установлении отцовства и взыскании алиментов</p>
       </div>
 
-      <p>С ${formatDateSafe(formData.startDate)} по ${formatDateSafe(formData.endDate)} я состояла в фактических брачных отношениях с ${formData.defendantName || 'Ф.И.О.'}.</p>
+      <p style="text-indent: 15px; margin-bottom: 15px;">С ${formatDateSafe(formData.startDate)} по ${formatDateSafe(formData.endDate)} я состояла в фактических брачных отношениях с ${formData.defendantName || 'Ф.И.О.'}.</p>
       
-      <p>______________ ______ я родила ${formData.childName || '____________________'}.</p>
+      <p>${formatDateSafe(formData.child1_birthdate)} я родила ${formData.child1_name || '____________________'} 
+      </p>
 
-      <p>Несмотря на то, что ответчик является отцом ребенка, он отказывается признать себя отцом ребенка и отказывается подать в органы ЗАГС заявление об установлении отцовства.</p>
+      <p style="text-indent: 15px; margin-bottom: 15px;">Несмотря на то, что ответчик является отцом ребенка, он отказывается признать себя отцом ребенка и отказывается подать в органы ЗАГС заявление об установлении отцовства.</p>
       
-      <p>В ${getMonthFromDate(formData.endDate)} ______  ${formData.defendantName || 'Ф.И.О. ответчика'} оставил меня и ребенка и перестал оказывать нам материальную помощь. Ребенок находится исключительно на моем иждивении.</p>
+      <p>В ${getMonthFromDate(formData.endDate)} ${new Date(formData.endDate).getFullYear() || '______'} г. ${formData.defendantName || 'Ф.И.О. ответчика'} оставил меня и ребенка и перестал оказывать нам материальную помощь. Ребенок находится исключительно на моем иждивении.</p>
       
-      <p>Отцовство ответчика в отношении ${formData.childName || '____________________'} я подтверждаю следующим: почти в течение ${formData.cohabitationDuration || '_________'} лет ${formData.defendantName || 'Ф.И.О. ответчика'} постоянно проживал вместе со мной в моей квартире, и мы вели с ним общее хозяйство. Это могут подтвердить свидетели: ${witnessesContent}.</p>
+      <p style="text-indent: 15px; margin-bottom: 15px;">Отцовство ответчика в отношении ${formData.child1_name || '____________________'} я подтверждаю следующим: почти в течение ${formData.cohabitationDuration || '_____'} лет ${formData.defendantName || 'Ф.И.О. ответчика'} постоянно проживал вместе со мной в моей квартире, и мы вели с ним общее хозяйство. Это могут подтвердить свидетели: ${witnessesContent}.</p>
 
       <div style="margin: 20px 0;">
         <h3 style="text-align: center; font-weight: bold;">ПРОШУ:</h3>
-        <p>1. Установить, что ${formData.defendantName || 'Ф.И.О. ответчика'}, ${formatDateSafe(formData.defendantBirthDate)} года рождения., уроженец ${formData.defendantBirthPlace || '___________________________'}, является отцом ${formData.childName || '_________'}.</p>
-        <p>2. Взыскать с ${formData.defendantName || 'Ф.И.О. ответчика'} в мою пользу алименты в размере 1/4 части заработка и иных доходов до совершеннолетия ${formData.childName || '____________________'}.</p>
+        <p>1. Установить, что ${formData.defendantName || 'Ф.И.О. ответчика'}, ${formatDateSafe(formData.defendantBirthDate)} года рождения, уроженец ${formData.defendantBirthPlace || '___________________________'}, является отцом ${formData.child1_name || '_________'}.</p>
+        <p>2. Взыскать с ${formData.defendantName || 'Ф.И.О. ответчика'} в мою пользу на содержание ${formData.child1_name || '____________________'}  1/4 части заработка и иных доходов до совершеннолетия ${formData.child1_name || '____________________'}.</p>
       </div>
 
       <div style="margin-top: 30px;">
         <h3 style="font-weight: bold;">Приложения:</h3>
         <ol style="margin-left: 20px;">
           <li>Квитанция об оплате государственной пошлины;</li>
-          <li>Доказательство направления другим лицам копии искового заявления (почтовая квитанция);</li>
+          <li>Доказательство направления другим лицам копии искового заявления;</li>
           <li>Копия паспорта истца;</li>
-          <li>Копия свидетельства о рождении ребенка;</li>
-          <li>Письма ${formData.defendantName || 'Ф.И.О. ответчика'}, подтверждающие исковые требования;</li>
-          <li>Справка о заработке ${formData.defendantName || 'Ф.И.О. ответчика'};</li>
-          <li>Справка домкома/квартального о проживании ребенка с истцом;</li>
+          <li>Копия свидетельства о рождении ребенка (№${formData.childCertificateNumber || '_____'});</li>
+          <li>Письма ответчика, подтверждающие исковые требования;</li>
+          <li>Справка о заработке ответчика;</li>
+          <li>Справка о проживании ребенка с истцом;</li>
           <li>Копия искового заявления.</li>
         </ol>
       </div>
 
-        <div style="display:flex; justify-content: space-between; padding: 20px 1px">
-        <p>Истец: ${formData.claimantName}</p>
-        <div style="display:flex; flex-direction:column">
+      <div style="display:flex; justify-content: space-between; margin-top: 50px;">
+        <p>Истец: ${formData.claimantName || '__________________________'}</p>
+        <div style="display:flex; flex-direction:column; align-items: flex-end;">
           <p>Подпись: _________________</p>
-          <p style="width: 100%">Дата: ${new Date().toLocaleDateString()}</p>
+          <p>Дата: "${new Date().getDate()}" ${new Date().toLocaleString('ru', { month: 'long' })} ${new Date().getFullYear()} г.</p>
         </div>
       </div>
     </div>
   `;
 };
-
-
-
 
 
 

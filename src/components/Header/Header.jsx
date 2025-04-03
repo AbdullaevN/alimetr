@@ -74,35 +74,99 @@ const Header = () => {
 
 
   // Мобильное меню с переводами
-  const mobileMenu = menuOpen && (
-    <nav className="fixed inset-0 bg-gradient-to-r from-[#2EA481] to-[#1DA29F] flex justify-end z-50">
-      <div className="w-full sm:w-full px-14 py-7">
-        {/* ... кнопка закрытия ... */}
-        <ul className="text-white text-lg gap-8 font-sm flex-col items-start pl-0 w-full text-start block mt-10">
-          <NavLink to="/" onClick={() => setMenuOpen(false)}>
-            <li className="cursor-pointer py-3">{t("header.calculator")}</li>
-          </NavLink>
-          <NavLink to="/templates" onClick={() => setMenuOpen(false)}>
-            <li className="cursor-pointer py-3">{t("header.generator")}</li>
-          </NavLink>
-          <NavLink to="/info" onClick={() => setMenuOpen(false)}>
-            <li className="cursor-pointer py-3">{t("header.info")}</li>
-          </NavLink>
-        </ul>
-        <div className="flex space-x-5 items-center">
-            {languages.map(({ code, label }) => (
-              <button
-                key={code}
-                className={`text-white font-medium ${currentLanguage === code ? "underline" : " / "}`}
-                onClick={() => changeLanguage(code)}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
+  // const mobileMenu =
+  //  menuOpen && (
+  //   <nav className="fixed inset-0 bg-gradient-to-r from-[#2EA481] to-[#1DA29F] flex justify-end z-50">
+  //     <div className="w-full sm:w-full px-14 py-7">
+  //       {/* ... кнопка закрытия ... */}
+  //       <ul className="text-white text-lg gap-8 font-sm flex-col items-start pl-0 w-full text-start block mt-10">
+  //         <NavLink to="/" onClick={() => setMenuOpen(false)}>
+  //           <li className="cursor-pointer py-3">{t("header.calculator")}</li>
+  //         </NavLink>
+  //         <NavLink to="/templates" onClick={() => setMenuOpen(false)}>
+  //           <li className="cursor-pointer py-3">{t("header.generator")}</li>
+  //         </NavLink>
+  //         <NavLink to="/info" onClick={() => setMenuOpen(false)}>
+  //           <li className="cursor-pointer py-3">{t("header.info")}</li>
+  //         </NavLink>
+  //       </ul>
+  //       <div className="flex space-x-5 items-center">
+  //           {languages.map(({ code, label }) => (
+  //             <button
+  //               key={code}
+  //               className={`text-white font-medium ${currentLanguage === code ? "underline" : " / "}`}
+  //               onClick={() => changeLanguage(code)}
+  //             >
+  //               {label}
+  //             </button>
+  //           ))}
+  //         </div>
+  //     </div>
+  //   </nav>
+  // );
+
+
+{/* Мобильное меню (SideBar) */}
+// {
+    const mobileMenu =
+
+  menuOpen && (
+  <nav className="fixed inset-0 bg-gradient-to-r from-[#2EA481] to-[#1DA29F] flex justify-end z-50">
+    <div className="w-full sm:w-full px-14 py-7">
+      <button
+        onClick={() => setMenuOpen(false)}
+        className="text-white text-2xl absolute top-9 right-9"
+        aria-label="Закрыть меню"
+      >
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M18 6L6 18M6 6L18 18"
+            stroke="white"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </button>
+      
+      <ul className="text-white text-lg gap-8 font-sm flex-col items-start pl-0 w-full text-start block mt-10">
+        <NavLink to="/" onClick={() => setMenuOpen(false)}>
+          <li className="cursor-pointer py-3">{t("header.calculator")}</li>
+        </NavLink>
+        <NavLink to="/templates" onClick={() => setMenuOpen(false)}>
+          <li className="cursor-pointer py-3">{t("header.generator")}</li>
+        </NavLink>
+        <NavLink to="/info" onClick={() => setMenuOpen(false)}>
+          <li className="cursor-pointer py-3">{t("header.info")}</li>
+        </NavLink>
+      </ul>
+
+      {/* Переключатель языка внутри мобильного меню */}
+      <div className="mt-10 flex space-x-5">
+        {languages.map(({ code, label }) => (
+          <button
+            key={code}
+            className={`text-white text-lg font-medium ${currentLanguage === code ? "underline" : ""}`}
+            onClick={() => {
+              changeLanguage(code);
+              setMenuOpen(false);
+            }}
+          >
+            {label}
+          </button>
+        ))}
       </div>
-    </nav>
-  );
+    </div>
+  </nav>
+  )
+
+
 
   
   return (
@@ -185,7 +249,7 @@ const Header = () => {
           </nav> */}
    {desktopMenu}
 
-  {/* Переключатель языка */}
+  {/* Переключатель языка
   <div className="md:flex space-x-5 items-center hidden ">
             {languages.map(({ code, label }) => (
               <button
@@ -196,7 +260,25 @@ const Header = () => {
                 {label}
               </button>
             ))}
-          </div>
+          </div> */}
+          {/* Переключатель языка (десктопная версия) */}
+<div className="hidden md:flex items-center mx-10">
+  {languages.map(({ code, label }, index) => (
+    <React.Fragment key={code}>
+      <button
+        className={`text-white px-2 py-1 ${
+          currentLanguage === code ? "font-bold underline" : "opacity-50"
+        }`}
+        onClick={() => changeLanguage(code)}
+      >
+        {label}
+      </button>
+      {index < languages.length - 1 && (
+        <span className="text-white">/</span>
+      )}
+    </React.Fragment>
+  ))}
+</div>
               
       {mobileMenu}
    
@@ -222,33 +304,56 @@ const Header = () => {
 
 
           {/* Бургер-меню (мобильное) */}
-          <div className="md:hidden mx-10">
-            <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="text-white text-2xl"
-              aria-label="Меню"
-            >
-              {menuOpen ? (
-                "X"
-              ) : (
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M21 12H9M21 18H7M21 6H3"
-                    stroke="white"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              )}
-            </button>
-          </div>
+        {/* Бургер-меню (мобильное) */}
+<div className="md:hidden mx-10">
+  <button
+    onClick={() => setMenuOpen(!menuOpen)}
+    className="text-white text-2xl"
+    aria-label={menuOpen ? "Закрыть меню" : "Открыть меню"}
+  >
+    {menuOpen ? (
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M18 6L6 18M6 6L18 18"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ) : (
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M21 12H9M21 18H7M21 6H3"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    )}
+  </button>
+</div>
+
+
+
+
+
+
+
+
         </div>
       </div>
 
