@@ -16,6 +16,7 @@ const ApplicationBlock = ({ form }) => {
   </Link>
   <p className="text-white text-base md:text-sm break-words flex-1">
     {form.description}
+
   </p>
 </div>
           <div className="flex justify-center md:justify-end w-full md:w-auto mt-4 md:mt-0">
@@ -43,12 +44,33 @@ const Assistant = ({ limit }) => {
           <h1 className="text-2xl md:text-5xl font-bold">
             Помощник в подготовке документов
           </h1>
+       
           <Link to={'/templates'} className="mt-4 md:mt-0">
             <button className="text-sm hidden md:flex cursor-pointer">
               Открыть больше
             </button>
           </Link>
         </div>
+        <div className="mt-4">
+  <h2 className="text-xl font-semibold mb-2">Как получить нужный документ?</h2>
+  <div className="flex flex-col md:flex-row gap-4">
+    <div className=" bg-opacity-10 p-4 rounded-lg w-full md:w-1/5">
+      <p>1. Заполнить анкету</p>
+    </div>
+    <div className=" bg-opacity-10 p-4 rounded-lg w-full md:w-1/5">
+      <p>2. Проверить документ. Вы можете поправить его сами.</p>
+    </div>
+    <div className=" bg-opacity-10 p-4 rounded-lg w-full md:w-1/5">
+      <p>3. Распечатать документ</p>
+    </div>
+    <div className=" bg-opacity-10 p-4 rounded-lg w-full md:w-1/5">
+      <p>4. Подписать документ</p>
+    </div>
+    <div className=" bg-opacity-10 p-4 rounded-lg w-full md:w-1/5">
+      <p>5. Финишная прямая. Документы у Вас в руках!</p>
+    </div>
+  </div>
+</div>
 
         <div className="flex flex-col md:flex-wrap">
           {displayedItems.map((form) => (

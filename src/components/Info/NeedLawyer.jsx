@@ -1,29 +1,60 @@
 import { Helmet } from "react-helmet-async";
+import procedureImage from "../../assets/info3.png";
+import { useTranslation } from "react-i18next";
 
 const NeedLawyer = () => {
-    return ( 
-        <>
-            <Helmet>
-                <title>Нужен ли адвокат для подачи иска на алименты?</title>
-                <meta name="description" content="Разбираем, когда стоит обращаться к адвокату по алиментам и можно ли выиграть дело без него." />
-                <meta name="keywords" content="адвокат по алиментам, нужен ли юрист, помощь в суде, подать на алименты без адвоката" />
-            </Helmet>
+  const { t } = useTranslation();
+  
+  return (
+    <>
+      <Helmet>
+        <title>{t("need_lawyer.title")}</title>
+        <meta
+          name="description"
+          content={t("need_lawyer.meta_description")}
+        />
+        <meta
+          name="keywords"
+          content={t("need_lawyer.meta_keywords")}
+        />
+        <link rel="canonical" href="https://alimetr.kg/need-lawyer" />
+      </Helmet>
+      <section className="py-8 text-white px-6 md:px-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center lg:justify-between gap-8">
+          <div className="lg:w-1/2">
+            <h1 className="text-2xl font-bold mb-4">{t("need_lawyer.main_title")}</h1>
+            
+            <p className="mb-4">{t("need_lawyer.intro")}</p>
+            
+            {/* <h2 className="text-xl font-semibold mt-4">{t("need_lawyer.reasons_title")}</h2> */}
+            <ul className="list-disc pl-6 space-y-2 mt-2">
+              {t("need_lawyer.reasons", { returnObjects: true }).map((reason, index) => (
+                <li key={index}>
+                  <strong></strong> {reason.description}
+                </li>
+              ))}
+            </ul>
 
-            <section className="py-8 text-white h-screen">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <h1 className="text-2xl font-bold mb-4">Нужен ли мне адвокат?</h1>
-                    <p className="mb-4">Наличие адвоката при подаче иска о взыскании алиментов не является обязательным, но может быть очень полезным. Вот несколько причин, почему стоит рассмотреть возможность обращения к юристу:</p>
-                    <ul className="list-disc pl-6 space-y-2">
-                        <li><strong>Правовая помощь:</strong> Адвокат может помочь вам правильно оформить все необходимые документы, обеспечить их соответствие законодательству и избежать ошибок, которые могут затянуть процесс.</li>
-                        <li><strong>Поддержка в суде:</strong> Наличие адвоката на судебном заседании может повысить шансы на успешный исход дела. Он сможет аргументированно представить ваши интересы и ответить на вопросы суда.</li>
-                        <li><strong>Консультации:</strong> Адвокат сможет дать советы по стратегии ведения дела, что особенно важно, если дело имеет сложности или спорные моменты.</li>
-                        <li><strong>Защита прав:</strong> Адвокат поможет защитить ваши права и интересы, особенно если в процессе участвуют другие стороны или возникают дополнительные юридические вопросы.</li>
-                    </ul>
-                    <p className="mt-4">В то же время, многие люди успешно подают иски о взыскании алиментов самостоятельно, особенно если дело простое и не требует глубоких юридических знаний. Если вы уверены в своих силах и имеете достаточно информации, возможно, вы сможете справиться без адвоката.</p>
-                </div>
-            </section>
-        </>
-    );
-}
- 
+            <div className="mt-6 p-4 rounded-lg">
+              <h2 className="text-xl font-semibold">⚖️ {t("need_lawyer.important_note.title")}</h2>
+              <p className="mt-2">{t("need_lawyer.important_note.content")}</p>
+            </div>
+
+            {/* <h2 className="text-xl font-semibold mt-4">{t("need_lawyer.conclusion_title")}</h2> */}
+            <p className="mt-2">{t("need_lawyer.conclusion")}</p>
+          </div>
+          
+          <div className="lg:w-1/2">
+            <img 
+              src={procedureImage} 
+              alt={t("need_lawyer.image_alt")} 
+              className="h-60 object-contain w-full rounded-lg" 
+            />
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};
+
 export default NeedLawyer;

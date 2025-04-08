@@ -1,40 +1,42 @@
 import courtImage from '../../assets/info4.png';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 
 const HowToBehave = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <Helmet>
-        <title>Как вести себя в суде по алиментам? Советы и рекомендации</title>
-        <meta name="description" content="Узнайте, как правильно вести себя в суде при разбирательстве по алиментам, чтобы добиться справедливого решения." />
-        <meta name="keywords" content="суд по алиментам, поведение в суде, советы для суда, как говорить в суде" />
+        <title>{t("court_behavior.title")}</title>
+        <meta name="description" content={t("court_behavior.meta_description")} />
+        <meta name="keywords" content={t("court_behavior.meta_keywords")} />
+        <link rel="canonical" href="https://alimetr.kg/how-to-behave-in-court" />
       </Helmet>
-      <section className="py-8 text-white">
+      <section className="py-8 text-white px-6 md:px-10"> {/* Добавлены отступы px-6 md:px-10 */}
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center lg:justify-between gap-8">
           
           <div className="lg:w-1/2">
-            <h1 className="text-2xl font-bold mb-4">Как вести себя в суде?</h1>
-            <p className="mb-4">
-              Ведение себя в суде по алиментам очень важно для успешного рассмотрения дела. Вот несколько рекомендаций:
-            </p>
+            <h1 className="text-2xl font-bold mb-4">{t("court_behavior.main_title")}</h1>
+            <p className="mb-4">{t("court_behavior.intro")}</p>
             <ul className="list-disc pl-6 space-y-2">
-              <li><strong>Подготовка:</strong> Ознакомьтесь с делом и соберите все необходимые документы.</li>
-              <li><strong>Одевайтесь соответствующе:</strong> Деловая одежда создаст положительное впечатление.</li>
-              <li><strong>Приходите вовремя:</strong> Опоздание может негативно сказаться на деле.</li>
-              <li><strong>Уважение к суду:</strong> При входе судей в зал все должны встать.</li>
-              <li><strong>Как отвечать:</strong> Говорите стоя, если судья не разрешил сидя.</li>
-              <li><strong>Как обращаться к судье:</strong> Начинайте речь со слов: "Уважаемый суд".</li>
-              <li><strong>Не вступайте в споры:</strong> Оставайтесь спокойным и не реагируйте на провокации.</li>
-              <li><strong>Ясность мысли:</strong> Структурируйте аргументы, избегайте лишних эмоций.</li>
-              <li><strong>Поддержка адвоката:</strong> Проконсультируйтесь перед заседанием.</li>
+              {t("court_behavior.tips", { returnObjects: true }).map((tip, index) => (
+                <li key={index}>
+                  <strong>{tip.title}:</strong> {tip.description}
+                </li>
+              ))}
             </ul>
             <p className="mt-4 font-semibold">
-              Эти рекомендации помогут вам вести себя уверенно и профессионально в суде.
+              {t("court_behavior.conclusion")}
             </p>
           </div>
 
           <div className="lg:w-1/2">
-            <img src={courtImage} alt="Суд" className="h-60 object-contain w-full rounded-lg" />
+            <img 
+              src={courtImage} 
+              alt={t("court_behavior.image_alt")} 
+              className="h-60 object-contain w-full rounded-lg" 
+            />
           </div>
 
         </div>

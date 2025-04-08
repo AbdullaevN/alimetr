@@ -1,46 +1,60 @@
 import { Helmet } from 'react-helmet';
+import { useTranslation } from 'react-i18next';
 import procedureImage from '../../assets/info9.png';
 
 const ChangeOfAlimony = () => {
+  const { t } = useTranslation();
+
+  const reasons = t('alimony_adjustment.reasons', { returnObjects: true });
+  const howToApply = t('alimony_adjustment.how_to_apply', { returnObjects: true });
+  const tips = t('alimony_adjustment.tips', { returnObjects: true });
+
   return (
     <>
       <Helmet>
-        <title>Как изменить сумму алиментов? Уменьшение и увеличение выплат</title>
-        <meta name="description" content="В каких случаях можно изменить размер алиментов? Основания, подача иска и судебная практика." />
-        <meta name="keywords" content="изменение алиментов, уменьшение алиментов, увеличение выплат, пересмотр алиментов" />
+        <title>{t('alimony_adjustment.title')}</title>
+        <meta name="description" content={t('alimony_adjustment.meta_description')} />
+        <meta name="keywords" content={t('alimony_adjustment.meta_keywords')} />
       </Helmet>
+
       <section className="py-8 text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center lg:justify-between gap-8">
           
           <div className="lg:w-1/2">
-            <h1 className="text-2xl font-bold mb-4">Можно ли изменить размер алиментов?</h1>
+            <h1 className="text-2xl font-bold mb-4">{t('alimony_adjustment.main_title')}</h1>
+
+            <p className="text-lg">{t('alimony_adjustment.intro')}</p>
             
-            <p className="text-lg">Размер алиментов можно увеличить через суд, если изменились жизненные обстоятельства. Для этого нужно подать иск об изменении размера алиментов.</p>
-            
-            <h2 className="text-xl font-semibold mt-4">Основания для увеличения алиментов:</h2>
+            <h2 className="text-xl font-semibold mt-4">{t('alimony_adjustment.reasons_title')}</h2>
             <ul className="list-disc pl-6 space-y-2">
-              <li>Увеличились расходы на ребенка (например, лечение, обучение, дополнительные нужды).</li>
-              <li>Доход плательщика алиментов значительно вырос.</li>
-              <li>Ребенок стал инвалидом, требующим дополнительных средств на содержание.</li>
+              {reasons.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
             </ul>
-            
-            <h2 className="text-xl font-semibold mt-4">Как подать на изменение размера алиментов?</h2>
+
+            <h2 className="text-xl font-semibold mt-4">{t('alimony_adjustment.how_to_apply_title')}</h2>
             <ul className="list-disc pl-6 space-y-2">
-              <li>Подготовьте исковое заявление об изменении размера алиментов в суд.</li>
-              <li>Приложите документы, подтверждающие изменение обстоятельств (справки о доходах, медицинские заключения и т. д.).</li>
-              <li>Укажите желаемый новый размер алиментов и обоснуйте свои требования.</li>
+              {howToApply.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
             </ul>
-            
-            <h2 className="text-xl font-semibold mt-4">Дополнительные советы:</h2>
+
+            <h2 className="text-xl font-semibold mt-4">{t('alimony_adjustment.tips_title')}</h2>
             <ul className="list-disc pl-6 space-y-2">
-              <li><strong>Контролируйте процесс:</strong> Сохраняйте все документы, связанные с взысканием алиментов (исполнительные листы, квитанции, уведомления). Это поможет в случае споров.</li>
-              <li><strong>Учитывайте сроки:</strong> Если вы обнаружили, что алименты не выплачиваются, действуйте быстро. Чем дольше вы ждете, тем больше может накопиться долг.</li>
-              <li><strong>Проконсультируйтесь с юристом:</strong> Если ситуация сложная (например, должник скрывает доходы или находится за границей), лучше обратиться за профессиональной помощью.</li>
+              {tips.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
             </ul>
+
+            <p className="text-lg mt-4">{t('alimony_adjustment.conclusion')}</p>
           </div>
           
           <div className="lg:w-1/2">
-            <img src={procedureImage} alt="Изменение размера алиментов" className="h-60 object-contain w-full rounded-lg" />
+            <img
+              src={procedureImage}
+              alt={t('alimony_adjustment.image_alt')}
+              className="h-60 object-contain w-full rounded-lg"
+            />
           </div>
         </div>
       </section>

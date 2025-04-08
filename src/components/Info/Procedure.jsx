@@ -1,35 +1,40 @@
 import { Helmet } from "react-helmet-async";
 import procedureImage from '../../assets/info5.png';
+import { useTranslation } from 'react-i18next';
 
 const Procedure = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <Helmet>
-        <title>Как подать иск на алименты? Пошаговая инструкция</title>
-        <meta name="description" content="Полное руководство по подаче иска на алименты: куда обращаться, какие документы нужны и как проходит процесс." />
-        <meta name="keywords" content="подача иска, иск на алименты, судебный процесс, куда подать иск" />
+        <title>{t("procedure.title")}</title>
+        <meta name="description" content={t("procedure.meta_description")} />
+        <meta name="keywords" content={t("procedure.meta_keywords")} />
       </Helmet>
 
-      <section className="py-8 text-white   h-svh" >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center lg:justify-between gap-8 ">
+      <section className="py-8 text-white h-svh">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center lg:justify-between gap-8">
           
           <div className="lg:w-1/2 px-4 sm:px-6">
-            <h1 className="text-2xl font-bold mb-4">Порядок подачи иска</h1>
-            <p className="mb-4">
-              После подготовки всех документов важно правильно подать исковое заявление. Для этого следуйте следующим шагам:
-            </p>
-            <ul className="list-disc pl-6 space-y-2">
-              <li>Все документы сдайте в канцелярию суда.</li>
-              <li>На один экземпляр вашего заявления вы получите печать и отметку с датой о принятии вашего заявления.</li>
-              <li>Номера телефонов канцелярии можно найти на сайте суда или уточнить непосредственно в здании суда при подаче заявления.</li>
-            </ul>
+            <h1 className="text-2xl font-bold mb-4">{t("procedure.main_title")}</h1>
+            <p className="mb-4">{t("procedure.intro")}</p>
+            <ol className="list-decimal pl-6 space-y-2">
+              {t("procedure.steps", { returnObjects: true }).map((step, index) => (
+                <li key={index}>{step}</li>
+              ))}
+            </ol>
             <p className="mt-4 font-semibold">
-              Соблюдение этих шагов обеспечит правильность подачи заявления и ускорит процесс его рассмотрения.
+              {t("procedure.conclusion")}
             </p>
           </div>
 
           <div className="lg:w-1/2 px-4 sm:px-6">
-            <img src={procedureImage} alt="Процедура подачи иска" className="h-60 object-contain w-full rounded-lg" />
+            <img 
+              src={procedureImage} 
+              alt={t("procedure.image_alt")} 
+              className="h-60 object-contain w-full rounded-lg" 
+            />
           </div>
 
         </div>

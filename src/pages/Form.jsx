@@ -8,10 +8,10 @@ import {
   generateAlimonyDoc,
   generateDivorceAlimonyDoc,
   generateAlimonyIncomeShareDoc,
-  generatePaternityAlimonyDoc,
-  generatePaternityDoc,
+  generate1,
+  generate2,
 } from "../utils/generateDocument";
-import FormInput from "../components/Form/FormInput";
+import {FormInput} from "../components/Form/FormInput";
 import ChildInput from "../components/Form/ChildInput";
 
  import jsPDF from "jspdf";
@@ -44,22 +44,15 @@ const FormPage = () => {
   const [modalContent, setModalContent] = useState("");
   new Date(formData.marriageDate).toLocaleDateString('ru-RU', { day: '2-digit', month: 'long', year: 'numeric' })
 
-  // const formatDate = (date) => {
-  //   return new Date(date).toLocaleDateString('ru-RU', {
-  //     day: '2-digit',
-  //     month: 'long',
-  //     year: 'numeric'
-  //   });
-  // };
-
   const formatDate = (date) => {
     if (!date) return '_________';
     const d = new Date(date);
-    const day = d.getDate();
-    const month = d.toLocaleString('ru-RU', { month: 'long' });
+    const day = String(d.getDate()).padStart(2, '0');
+    const month = String(d.getMonth() + 1).padStart(2, '0'); // Месяцы начинаются с 0
     const year = d.getFullYear();
-    return `${day} ${month} ${year}`;
+    return `${day}.${month}.${year}`
   };
+
 
 
 
@@ -81,10 +74,18 @@ const FormPage = () => {
     return <h2 className="text-white text-center mt-10">Форма не найдена</h2>;
   }
 
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData((prev) => ({ ...prev, [name]: value }));
+  // };
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
+  
 
   const handleChildrenChange = (e) => {
     setChildrenCount(parseInt(e.target.value, 10));
@@ -107,7 +108,7 @@ const FormPage = () => {
   
     switch (form.id) {
       case "alimony":
-        documentContent = generateAlimonyDoc(formData, childrenCount,formatDate);
+        documentContent = generateAlimonyDoc(formData,childrenCount, formatDate);
         break;
       case "alimony_divorce":
         documentContent = generateDivorceAlimonyDoc(formData, childrenCount,formatDate);
@@ -115,13 +116,14 @@ const FormPage = () => {
         case "alimony_income_share":
           documentContent = generateAlimonyIncomeShareDoc(formData, childrenCount,formatDate);
           break;
-          case "paternity_alimony":
-            documentContent = generatePaternityAlimonyDoc({ ...formData, witnesses }, formatDate); 
+          case "alimony1":
+          documentContent = generate1(formData, childrenCount,formatDate);
+          break;
+          case "alimony2":
+            documentContent = generate2(formData, childrenCount,formatDate);
             break;
-
-            case "paternity":
-              documentContent = generatePaternityDoc(formData,formatDate);  
-              break;
+          
+         
       default:
         documentContent = "<p>Форма не найдена</p>";
         break;
@@ -159,26 +161,6 @@ const downloadAsDoc = () => {
 
 
 
-// const downloadDoc = () => {
-//   const input = document.createElement("div");
-//   input.innerHTML = modalContent;
-//   document.body.appendChild(input);
-
-//   html2canvas(input).then((canvas) => {
-//     const imgData = canvas.toDataURL("image/png");
-//     const pdf = new jsPDF();
-//     const imgProps = pdf.getImageProperties(imgData);
-//     const pdfWidth = pdf.internal.pageSize.getWidth();
-//     const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-
-//     pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
-//     pdf.save("document.pdf");
-
-//     document.body.removeChild(input);
-//   });
-// };
-
-
 const downloadDoc = () => {
   const input = document.createElement("div");
   input.innerHTML = modalContent;
@@ -213,33 +195,76 @@ const downloadDoc = () => {
         <Link to="/templates" className="hover:underline">Генератор заявлений</Link> / 
         <span className="text-[#F8F8FA] font-bold">{form.title}</span>
       </div>
-  
+
+
+
+    
+     
+      <p className="text-center mt-8"></p>
       <div className="flex items-baseline md:flex-row flex-col px-6">
         <h1 className="text-3xl px-0 mx-0 py-4">{form.title}</h1>
         <p className="mb-4 text-3xl">{form.description}</p>
+
       </div>
-  
+      
+     
+
+    
+ 
       <div className="flex px-6 justify-between pt-10 md:flex-row flex-col">
         <div className="w-full md:w-2/12 px-0 mx-0">
           <span className="font-bold">Введите данные для заявления</span>
+          <p className="text-center mt-20">{form.description1}</p>
+          <p className="text-center mt-10">{form.description2}</p>
         </div>
-  
+
         <form onSubmit={handleSubmit} className="px-2 rounded-lg w-full md:w-7/12 sm:w-7/12 py-16">
           <div className="flex gap-4 flex-col w-full">
-            {form.fields.map((field) => (
-              <FormInput
-                key={field.name}
-                label={field.label}
-                type={field.type}
-                name={field.name}
-                value={formData[field.name]}
-                onChange={handleChange}
-                placeholder={field.placehol}
-              />
-            ))}
+          {form.fields.map((field) => (
+  <FormInput
+    key={field.name}
+    label={field.label}
+    type={field.type}
+    name={field.name}
+    value={formData[field.name]}
+    onChange={handleChange}
+    placeholder={field.placeholder}  
+    options={field.options}  
+  />
+))}
           </div>
   
-          <div className="mb-4">
+
+          {form.id !== "alimony1" && (
+            <>
+  <div className="mb-4">
+    <label className="block text-sm font-medium">Количество детей</label>
+    <input
+      type="number"
+      min="1"
+      max="12"
+      value={childrenCount}
+      onChange={handleChildrenChange}
+      className="mt-1 block w-full p-2 border border-gray-300 rounded-2xl"
+    />
+  </div>
+
+
+
+<div className="grid grid-cols-1 gap-4">
+{Array.from({ length: childrenCount }).map((_, index) => (
+  <ChildInput
+    key={index}
+    index={index}
+    formData={formData}
+    handleChange={handleChange}
+  />
+))}
+</div> 
+</>
+
+)}
+           {/* <div className="mb-4">
             <label className="block text-sm font-medium">Количество детей</label>
             <input
               type="number"
@@ -249,67 +274,10 @@ const downloadDoc = () => {
               onChange={handleChildrenChange}
               className="mt-1 block w-full p-2 border border-gray-300 rounded-2xl"
             />
-          </div>
+          </div>  */}
   
-          <div className="grid grid-cols-1 gap-4">
-            {Array.from({ length: childrenCount }).map((_, index) => (
-              <ChildInput
-                key={index}
-                index={index}
-                formData={formData}
-                handleChange={handleChange}
-              />
-            ))}
-          </div>
+        
   
-          {/* Показываем блок свидетелей только для paternity_alimony */}
-          {form.id === "paternity_alimony" && (
-            <>
-              <div className="mb-4">
-                <label className="block text-sm font-medium">Имя свидетеля</label>
-                <input
-                  type="text"
-                  value={witnessName}
-                  onChange={(e) => setWitnessName(e.target.value)}
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-2xl"
-                  placeholder="Введите имя свидетеля"
-                />
-              </div>
-  
-              {/* <div className="mb-4">
-                <label className="block text-sm font-medium">Заявление свидетеля</label>
-                <input
-                  type="text"
-                  value={witnessStatement}
-                  onChange={(e) => setWitnessStatement(e.target.value)}
-                  className="mt-1 block w-full p-2 border border-gray-300 rounded-2xl"
-                  placeholder="Введите заявление свидетеля"
-                />
-              </div> */}
-  
-              <button
-                type="button"
-                onClick={addWitness}
-                className="px-4 py-3 text-sm mt-4 bg-[#65bec8] text-[#121212] w-full rounded-2xl"
-              >
-                Добавить свидетеля
-              </button>
-  
-              <div className="mt-4">
-                {witnesses.length > 0 && (
-                  <div>
-                    <h3 className="font-semibold">Список свидетелей:</h3>
-                    {witnesses.map((witness, index) => (
-                      <div key={index} className="mb-2">
-                        <p><strong>Свидетель {index + 1}:</strong> {witness.name}</p>
-                        {/* <p><strong>Заявление:</strong> {witness.statement}</p> */}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </>
-          )}
   
           <button
             type="submit"

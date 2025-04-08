@@ -5,160 +5,122 @@ export const formsData = [
 
   {
     id: "alimony_divorce",
-    title: "Исковое заявление ",
-    description: "о расторжении брака и взыскании алиментов",
+    title: "Исковое заявление",
+    description: "о расторжении брака и взыскании алиментов ",
+    description1:" Это заявление подаётся, если супруги решают развестись и одновременно один из родителей требует алименты на содержание детей.В заявлении указывается требование не только о разводе, но и о назначении алиментов в пользу одного из родителей на детей.",
     image: "formImg",
     fields: [
-      { name: "courtName", label: "В районный суд", type: "text" },
-      { name: "claimantName", label: "Истец (Ф.И.О.)", type: "text" },
-      { name: "claimantAddress", label: "Адрес истца", type: "text" },
-      { name: "defendantName", label: "Ответчик (Ф.И.О.)", type: "text" },
-      { name: "defendantAddress", label: "Адрес ответчика", type: "text" },
-      { name: "defendantBirthDate", label: "Дата рождения ответчика ", type: "date" },
-      { name: "marriageDate", label: "Дата вступления в брак", type: "date" },
-      { name: "zagcDistrict", label: "Брак зарегистрирован в отделе ЗАГС _________-ского района", type: "text", placeholder: "" },
+      { name: "courtName", label: "В ______ -ский  районный суд:(по месту проживания,прописки)", type: "text", placeholder: "Аламудунский" },
+      { name: "claimantName", label: "Истец (ФИО):", type: "text", placeholder: "Иванов Иван Иванович" },
+      { name: "claimantAddress", label: "Адрес истца:", type: "text", placeholder: "" },
+      { name: "defendantName", label: "Ответчик (ФИО):", type: "text", placeholder: "Петров Пётр Петрович" },
+      { name: "defendantAddress", label: "Адрес ответчика:", type: "text", placeholder: "" },
+      { name: "marriageDate", label: "Дата вступления в брак:", type: "date", placeholder: "01.01.2001" },
+      { name: "zagcDistrict", label: "Брак зарегистрирован в отделе ЗАГС _________-ского района", type: "text", placeholder: "Октябрьского" },
       { name: "divorceDate", label: "Совместное проживание до: ", type: "date" },
-      { name: "zagzCity", label: "Город (Область)", type: "text" },
       { name: "actNumber", label: "Актовая запись №", type: "text" },
-      { name: "lifeTogetherIssue", label: "Причина, по которой совместная жизнь не сложилась", type: "textarea" },
-      // { name: "childrenCount", label: "Количество детей:", type: "number", placeholder: "1" },
-      { name: "divorceCertificateNumber", label: "Подлинник свидетельства о заключении брака №", type: "text" },
-      { name: "divorceCertificateDate", label: "Дата свидетельства о заключении брака", type: "date" }
-      // { name: "defendantSupport", label: "Ответчик оказывает материальную помощь", type: "text" },
-      // { name: "courtDecisionDistrict", label: "Решение суда района", type: "text" },
+      { name: "salaryDocuments", label: "Есть ли документы о заработной плате?", type: "select", options: ["Да", "Нет"] }  // Здесь вы указываете опции
     ]
-  },  
+  },
+  
+  
+
+
 
   {
     id: "alimony_income_share",
     title: "Исковое заявление ",
     description: "о взыскании алиментов в долях к заработку",
+    description1:" Этот иск подаётся, если один из родителей не платит алименты на детей, и истец хочет, чтобы алименты взыскивались в долях от дохода (например, 1/4, 1/3). Сумма алиментов будет зависеть от доходов ответчика и может изменяться с ростом его заработка.",
     image: formImg,
     fields: [
-      { name: "courtName", label: "В ______ районный суд:", type: "text", placeholder: "6677" },
-      { name: "claimantName", label: "Истец (ФИО):", type: "text", placeholder: "7t87y8" },
-      { name: "claimantAddress", label: "Адрес истца:", type: "text", placeholder: "787" },
-      { name: "defendantName", label: "Ответчик (ФИО):", type: "text", placeholder: "87" },
-      { name: "defendantAddress", label: "Адрес ответчика:", type: "text", placeholder: "878" },
-      { name: "marriageDate", label: "Дата вступления в брак:", type: "date", placeholder: "06/05/275760" },
-      { name: "courtDecisionDistrict", label: "Решением суда _____ района брак расторгнут:", type: "text", placeholder: "6546dtr5" },
-      { name: "divorceDate", label: "Дата расторжения брака:", type: "date", placeholder: "05/04/275760" },
-      { name: "zagcDistrict", label: "Регистрация расторжения брака в отделе ЗАГС _______ района:", type: "text", placeholder: "6465e6sd" },
-      { name: "zagcDivorceDate", label: "Регистрация расторжения брака:", type: "date", placeholder: "06/04/275760" },
-      // { name: "childrenCount", label: "Количество детей:", type: "number", placeholder: "1" },
-      // { name: "child1Details", label: "Ребенок 1 (ФИО и дата рождения):", type: "text", placeholder: "ytfyygyg" },
-      // { name: "child1BirthDate", label: "Дата рождения ребенка 1:", type: "date", placeholder: "07/06/275760" },
-      // { name: "child1Certificate", label: "Свидетельство о рождении ребенка 1:", type: "text", placeholder: "65r756765765" },
-      // { name: "child1CertificateDate", label: "Дата выдачи свидетельства ребенка 1:", type: "date", placeholder: "07/05/275760" },
-      { name: "defendantBirthPlace", label: "Место рождения ответчика:", type: "text", placeholder: "7ifitfut" },
-      { name: "defendantBirthDate", label: "Дата рождения ответчика:", type: "date", placeholder: "06/05/275760" },
-      { name: "divorceCertificate", label: "Копия свидетельства о расторжении брака:", type: "text", placeholder: "tf765675656576" },
-      { name: "divorceCertificateDate", label: "От:", type: "date", placeholder: "07/06/275760" },
-      // { name: "divorceCertificateNumber", label: "Подлинник свидетельства о заключении брака №", type: "text" },
-      // { name: "divorceCertificateDate", label: "Дата свидетельства о заключении брака", type: "date" }
+      { name: "courtName", label: "В ______ -ский  районный суд:(по месту проживания,прописки)", type: "text", placeholder: "Аламудунский" },
+      { name: "claimantName", label: "Истец (ФИО):", type: "text", placeholder: "Иванов Иван Иванович" },
+      { name: "claimantAddress", label: "Адрес истца:", type: "text", placeholder: "" },
+      { name: "defendantName", label: "Ответчик (ФИО):", type: "text", placeholder: "Петров Пётр Петрович" },
+      { name: "defendantAddress", label: "Адрес ответчика:", type: "text", placeholder: "" },
+      { name: "marriageDate", label: "Дата вступления в брак:", type: "date", placeholder: "01.01.2001" },
+      { name: "courtDecisionDistrict", label: "Решением суда _____ -ского района брак расторгнут:", type: "text", placeholder: "Октябрьского" },
+      { name: "divorceDate", label: "Дата расторжения брака:", type: "date", placeholder: "02.02.2002" },
+      { name: "zagcDistrict", label: "Регистрация расторжения брака в отделе ЗАГС _______ -ского района:", type: "text", placeholder: "Октябрьского" },
+      { name: "zagcDivorceDate", label: "Регистрация расторжения брака:", type: "date", placeholder: "03.03.2003" },
+      { name: "salaryDocuments", label: "Есть ли документы о заработной плате?", type: "select", options: ["Да", "Нет"] }  // Здесь вы указываете опции
+   
     ]
   },  
   {
     id: "alimony",
     title: "Исковое заявление ",
     description: "о взыскании алиментов в твердой денежной сумме",
+    description1:"Это заявление подаётся, если истец хочет, чтобы алименты взыскивались в конкретной денежной сумме, а не в доле от доходов, подаётся этот иск.Это может быть полезно, если доход ответчика нестабилен и нужно зафиксировать точную сумму алиментов. ",
      image: "formImg",
     fields: [
-      { "name": "courtName", "label": "В районный суд", "placehol": "Название суда", "type": "text" },
-      { "name": "claimantName", "label": "Истец (ФИО)", "placehol": "ФИО истца", "type": "text" },
-      { "name": "claimantAddress", "label": "Адрес истца", "placehol": "Адрес истца", "type": "text" },
-      { "name": "defendantName", "label": "Ответчик (ФИО)", "placehol": "ФИО ответчика", "type": "text" },
-      { "name": "defendantAddress", "label": "Адрес ответчика", "placehol": "Адрес ответчика", "type": "text" },
-      { "name": "marriageDate", "label": "Дата вступления в брак", "placehol": "mm/dd/yyyy", "type": "date" },
-      { "name": "courtDecisionDistrict", "label": "Решение суда района", "placehol": "Название района", "type": "text" },
-      { "name": "divorceDate", "label": "Дата расторжения брака", "placehol": "mm/dd/yyyy", "type": "date" },
-      { "name": "zagcDistrict", "label": "Район регистрация расторжения брака в отделе ЗАГС", "placehol": "Название района", "type": "text" },
-      { "name": "zagcDivorceDate", "label": "Дата регистрации расторжения брака", "placehol": "mm/dd/yyyy", "type": "date" },
-      { "name": "alimonyAmount", "label": "Размер алиментов", "placehol": "Сумма алиментов", "type": "text" },
-      { "name": "defendantBirthDate", "label": "Дата рождения ответчика", "placehol": "mm/dd/yyyy", "type": "date" },
-      { "name": "divorceCertificateNumber", "label": "Копия свидетельства о расторжении брака №", "placehol": "Номер свидетельства", "type": "text" },
-      { "name": "divorceCertificateDate", "label": "Дата выдачи свидетельства о расторжении брака", "placehol": "mm/dd/yyyy", "type": "date" }
+      { name: "courtName", label: "В ______ районный суд:(по месту проживания,прописки)", type: "text", placeholder: "Аламудунский" },
+      { name: "claimantName", label: "Истец (ФИО):", type: "text", placeholder: "Иванов Иван Иванович" },
+      { name: "claimantAddress", label: "Адрес истца:", type: "text", placeholder: "" },
+      { name: "defendantName", label: "Ответчик (ФИО):", type: "text", placeholder: "Петров Пётр Петрович" },
+      { name: "defendantAddress", label: "Адрес ответчика:", type: "text", placeholder: "" },
+      { name: "marriageDate", label: "Дата вступления в брак:", type: "date", placeholder: "01.01.2001" },
+      { name: "courtDecisionDistrict", label: "Решением суда _____ района брак расторгнут:", type: "text", placeholder: "октябрьского" },
+      { name: "divorceDate", label: "Дата расторжения брака:", type: "date", placeholder: "02.02.2022" },
+      { name: "zagcDistrict", label: "Регистрация расторжения брака в отделе ЗАГС _______ района:", type: "text", placeholder: "свердловского" },
+      { name: "zagcDivorceDate", label: "Регистрация расторжения брака:", type: "date", placeholder: "03.03.2023" },
+      { name: "alimonyAmount", label: "Размер алиментов", type: "number", placeholder: "5000 сом" },
+    
+      
+    ]
+  }, 
+   {
+  id: "alimony1",
+    title: "Исковое заявление ",
+    description: "об увеличении размера алиментов",
+    description1:"Это заявление подаётся, если уже существует решение суда о размере алиментов, но обстоятельства изменились (например, увеличились расходы на ребёнка), этот иск подаётся для увеличения размера алиментов.",
+    description2:"Вы можете повысить размер алиментов, подписав соглашение или обратившись в суд. Алиментополучатель вправе обратиться с исковым заявлением, если у него есть следующие основания: Ухудшение материального положения или существенное снижение уровня заработной платы; Потеря работы по разным причинам; Заболевание ребенка, в связи с которым требуются дополнительные средства на лечение и реабилитацию (статья 91 Семейного кодекса КР; Невозможность работать из-за ухудшения состояния здоровья или получения инвалидности; Существенное повышение цен на товары первой необходимости (если при этом у взыскателя заработки не изменились). При желании плательщик может увеличить выплаты на добровольной основе.", 
+     image: "formImg",
+    fields: [
+      { name: "courtName", label: "В ______ районный суд:(по месту проживания,прописки)", type: "text", placeholder: "Аламудунский" },
+      { name: "claimantName", label: "Истец (ФИО):", type: "text", placeholder: "Иванов Иван Иванович" },
+      { name: "claimantAddress", label: "Адрес истца:", type: "text", placeholder: "" },
+      { name: "defendantName", label: "Ответчик (ФИО):", type: "text", placeholder: "Петров Пётр Петрович" },
+      { name: "defendantAddress", label: "Адрес ответчика:", type: "text", placeholder: "" },
+      { name: "zagcDistrict", label: "На основании решения  _______ -ского суда :", type: "text", placeholder: "октябрьского" },
+      { name: "zagcDivorceDate", label: "От_______ г.:", type: "date", placeholder: "01.01.2001" },
+      { name: "alimonyAmount", label: "обязан выплачивать алименты в размере____ сом", type: "number", placeholder: "5000 сом" },
+      { name: "zagcDistrict1", label: "В настоящее время обстоятельства изменились, а именно:_____", type: "text", placeholder: "Указать причину" },
+      { name: "alimonyAmount1", label: "Увеличить размер алиментов до ____ сом", type: "number", placeholder: "5000" },
+      { name: "alimonyAmount2", label: "Взыскать алименты в увеличенном размере с _____ г. ", type: "date", placeholder: "01.02.2026" },
+    
+    ]
+  },  
+  {
+  id: "alimony2",
+    title: "Приказ ",
+    description: "о вынесении судебного приказа о взыскании алиментов",
+    description1:"Это заявление подаётся, если ответчик согласен с требованиями и не оспаривает алименты, можно подать заявление на судебный приказ. Это упрощённая форма, которая позволяет быстро получить решение без судебных заседаний, если все документы в порядке.",
+   
+    image: "formImg",
+    fields: [
+      { name: "courtName", label: "В ______ районный суд:(по месту проживания,прописки)", type: "text", placeholder: "Аламудунский" },
+      { name: "claimantName", label: "Взыскатель (ФИО):", type: "text", placeholder: "Иванов Иван Иванович" },
+      { name: "claimantAddress", label: "Адрес взыскателя:", type: "text", placeholder: "" },
+      { name: "defendantName", label: "Должник (ФИО):", type: "text", placeholder: "Петров Пётр Петрович" },
+      { name: "defendantAddress", label: "Адрес должника:", type: "text", placeholder: "" },
+      { name: "marriageDate", label: "Дата вступления в брак:", type: "date", placeholder: "01.01.2001" },
+      { name: "divorceDate", label: "Дата расторжения брака:", type: "date", placeholder: "02.02.2022" },
+      { name: "divorceDate1", label: "Дата начало раздельного проживания:", type: "date", placeholder: "03.03.2023" },
+  
+     
+    
     ]
   },  
  
+ 
+ 
 
 
-  // {
-  //   id: "paternity_alimony",
-  //   title: "Исковое заявление ",
-  //   description: "Об установлении отцовства и взыскании алиментов",
-  //   image: formImg,
-  //   fields: [
-  //     { name: "courtName", label: "Название суда", type: "text" },
-  //     { name: "claimantName", label: "Истец (ФИО)", type: "text" },
-  //     { name: "claimantAddress", label: "Адрес истца", type: "text" },
-  //     { name: "defendantName", label: "Ответчик (ФИО)", type: "text" },
-  //     { name: "defendantAddress", label: "Адрес ответчика", type: "text" },
-  //     { name: "startDate", label: "Дата начала отношений", type: "date" },
-  //     { name: "endDate", label: "Дата окончания отношений", type: "date" },
-  //     // { name: "childName", label: "Имя ребенка", type: "text" },
-  //     // { name: "childBirthDate", label: "Дата рождения ребенка", type: "date" },
-  //     // { name: "childCertificateNumber", label: "Номер свидетельства о рождении", type: "text" },
-  //     { name: "childCertificateDate", label: "Дата выдачи свидетельства о рождении", type: "date" },
-  //     { name: "defendantBirthDate", label: "Дата рождения ответчика", type: "date" },
-  //     { name: "defendantBirthPlace", label: "Место рождения ответчика", type: "text" },
-  //     // { name: "cohabitationDuration", label: "Совместное проживание (в годах)", type: "number" }, // Новое поле
-  //   ],
-  // },
+  
 
 
-  {
-    id: "paternity_alimony",
-    title: "Исковое заявление",
-    description: "Об установлении отцовства и взыскании алиментов",
-    image: formImg,
-    fields: [
-      { name: "courtName", label: "Название суда", type: "text" },
-      { name: "claimantName", label: "Истец (ФИО)", type: "text" },
-      { name: "claimantAddress", label: "Адрес истца", type: "text" },
-      { name: "defendantName", label: "Ответчик (ФИО)", type: "text" },
-      { name: "defendantAddress", label: "Адрес ответчика", type: "text" },
-      { name: "startDate", label: "Дата начала отношений", type: "date" },
-      { name: "endDate", label: "Дата окончания отношений", type: "date" },
-      { name: "child1_name", label: "Имя ребенка", type: "text" },
-      { name: "child1_birthdate", label: "Дата рождения ребенка", type: "date" },
-      { name: "childCertificateNumber", label: "Номер свидетельства о рождении", type: "text" },
-      { name: "childCertificateDate", label: "Дата выдачи свидетельства", type: "date" },
-      { name: "defendantBirthDate", label: "Дата рождения ответчика", type: "date" },
-      { name: "defendantBirthPlace", label: "Место рождения ответчика", type: "text" },
-      { name: "cohabitationDuration", label: "Совместное проживание (лет)", type: "number" },
-      { name: "separationMonth", label: "Месяц прекращения помощи", type: "text" },
-      // { name: "childSupportPercentage", label: "Размер алиментов (1/4, 1/3 и т.д.)", type: "text" }
-    ],
-  },
-
-
-
-
-
-
-  {
-    id: "paternity",
-    title: "Исковое заявление ",
-    description: "Об установлении отцовства и взыскании алиментов",
-    image: formImg,
-    fields: [
-      { name: "courtName", label: "Название суда", type: "text" },
-      { name: "claimantName", label: "Истец (ФИО)", type: "text" },
-      { name: "claimantAddress", label: "Адрес истца", type: "text" },
-      { name: "defendantName", label: "Ответчик (ФИО)", type: "text" },
-      { name: "defendantAddress", label: "Адрес ответчика", type: "text" },
-      // { name: "startDate", label: "Дата начала отношений", type: "date" },
-      // { name: "endDate", label: "Дата окончания отношений", type: "date" },
-      // { name: "childBirthDate", label: "Дата рождения ребенка", type: "date" },
-      // { name: "defendantBirthDate", label: "Дата рождения ответчика", type: "date" },
-      // { name: "defendantBirthPlace", label: "Место рождения ответчика", type: "text" },
-      // { name: "childName", label: "ФИО ребенка", type: "text" },
-      { name: "cohabitationStartDate", label: "Дата начала совместного проживания", type: "date" },
-      { name: "cohabitationEndDate", label: "Дата окончания совместного проживания", type: "date" },
-      // { name: "childGender", label: "Пол ребенка", type: "text" },
-      { name: "evidence", label: "Доказательства", type: "textarea" } // Одно поле для доказательств
-    ],
-  }
+ 
   ];
   
