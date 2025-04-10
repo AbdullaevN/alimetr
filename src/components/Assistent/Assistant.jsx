@@ -71,8 +71,8 @@ const Assistant = ({ limit }) => {
             className="  p-4 rounded-lg w-full  md:w-1/5   "
           >
 
-<p class="px-4 w-full text-3xl font-bold self-start pb-7">{index + 1}</p> 
-<p class="px-4 w-full  self-start pb-7"> {doc.title}</p>
+<p class=" w-full text-3xl font-bold self-start pb-7">{index + 1}</p> 
+<p class=" w-full  self-start pb-7"> {doc.title}</p>
           </div>
         ))}
           </div>
