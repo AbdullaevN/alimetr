@@ -72,7 +72,7 @@ const Preparation = () => {
       <img 
         src={info1} 
         alt={t("preparation.image_alt")} 
-        className="h-auto max-w-full rounded-lg shadow-lg" 
+        className="h-auto max-w-full rounded-lg " 
       />
     </div>
   </div>

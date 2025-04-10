@@ -190,7 +190,7 @@ const SalaryCalculator = () => {
 
     <div className="mb-4">
       <input
-        type="text"
+        type="number"
         placeholder={t("calculate.salary")}
         value={income}
          onChange={handleInputChange}
@@ -229,38 +229,43 @@ const SalaryCalculator = () => {
       backgroundRepeat: 'no-repeat',
     }}
   >
-    <div className="flex flex-col justify-center items-center mb-4 pb-10 pt-15 text-center">
-      <h1 className="md:text-sm text-xl text-[#6A6A6A]">
-       {t("calculate.amount")}
-      </h1>
-      <span className="text-lg md:text-4xl font-bold text-[#121212]">
-        {result}
-      </span>
-    </div>
 
-    <table className="w-full mx-auto mt-6">
-      <tbody className="flex flex-wrap justify-between px-3 md:px-10">
-        <tr className="flex w-full">
-          <td className="font-medium w-full text-left items-center flex">{t("calculate.regionShow")}</td>
-          <td className="py-2 w-full text-end">{regionDetail}</td>
-        </tr>
-        <tr className="flex w-full items-center">
-          <td className="font-medium w-full text-left">{t("calculate.countChildShow")}</td>
-          <td className="py-2 w-full text-right">{childrenDetail}</td>
-        </tr>
-        <tr className="flex w-full">
-          <td className="font-medium w-full text-left">{t("calculate.alimonyPayer")}</td>
-          <td className="py-2">{incomeDetail}</td>
-        </tr>
-      </tbody>
-    </table>
+<div className="flex flex-col justify-between items-center mb-4 pb-10 pt-10 text-center h-full">
+  <h1 className="md:text-sm text-xl text-[#6A6A6A]">
+    {t("calculate.amount")}
+  </h1>
+  <span className="text-lg md:text-4xl font-bold text-[#121212]">
+    {result}
+  </span>
 
-    {/* <p className="text-[#6A6A6A] text-xs mt-4 md:w-4/12 w-10/12 flex items-start md:left-[-167px] left-[-30px] relative top-[76px]"> */}
-    <p className="  text-[#6A6A6A] text-xs mt-[35%] md:mt-[40%]">
-      {t("calculate.note")}
-    </p>
-  </div>
+  <table className="w-full mt-6">
+    <tbody className="md:px-10">
+      <tr>
+        <td className="font-medium text-left py-2">{t("calculate.regionShow")}</td>
+        <td className="py-2 text-right">{regionDetail}</td>
+      </tr>
+      <tr>
+        <td className="font-medium text-left py-2">{t("calculate.countChildShow")}</td>
+        <td className="py-2 text-right">{childrenDetail}</td>
+      </tr>
+      <tr>
+        <td className="font-medium text-left py-2">{t("calculate.alimonyPayer")}</td>
+        <td className="py-2 text-right">{incomeDetail}</td>
+      </tr>
+    </tbody>
+  </table>
+
+ 
+  <p className="w-full text-[#6A6A6A] text-xs mt-auto">
+    {t("calculate.note")}
+  </p>
 </div>
+
+
+    
+    </div>
+  </div>
+
 
 
     </section>

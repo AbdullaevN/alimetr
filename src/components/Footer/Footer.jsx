@@ -44,6 +44,7 @@ const Footer = () => {
     <li><Link to="/" className="text-white hover:text-gray-400">{t("header.calculator")}</Link></li>
     <li><Link to="/templates" className="text-white hover:text-gray-400">{t("header.generator")}</Link></li>
     <li><Link to="/info" className="text-white hover:text-gray-400">{t("header.info")}</Link></li>
+    <li><Link to="/about" className="text-white hover:text-gray-400">{t("header.about")}</Link></li>
   </ul>
 </div>
 

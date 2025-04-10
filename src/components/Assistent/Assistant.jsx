@@ -28,7 +28,7 @@ const ApplicationBlock = ({ form }) => {
             </Link>
           </div>
         </div>
-      </div>
+      </div>  
     </div>
   );
 };
@@ -43,28 +43,36 @@ const Assistant = ({ limit }) => {
 
   return (
     <section className="py-8">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-white text-start">
-        <div className="py-5 md:pb-10 flex flex-col md:flex-row justify-between items-center text-center md:text-start">
-          <h1 className="text-2xl md:text-5xl font-bold">
-          {t("assistant.title")}
-          </h1>
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-white text-start">
+      <div className="py-5 md:pb-10 flex flex-col md:flex-row justify-between items-center text-center md:text-start">
+        <h1 className="text-2xl md:text-5xl font-bold">
+        {t("assistant.title")}
+        </h1>
 
-          <Link to={'/templates'} className="mt-4 md:mt-0">
-            <button className="text-sm hidden md:flex cursor-pointer">
-              {t("assistant.open_more")}
-            </button>
-          </Link>
-        </div>
+        <Link to={'/templates'} className="mt-4 md:mt-0">
+          <button className="text-sm hidden md:flex cursor-pointer">
+            {t("assistant.open_more")}
+          </button>
+        </Link>
+      </div>
 
         <div className="mt-4">
+        <p class="px-4 text-1xl font-bold self-start pb-7">
+        {t("assistant.title1")}</p> 
+        <p class="px-4 w-full text-1xl  font-bold self-start pb-7">
+        {t("assistant.title2")}</p> 
+
           {/* <h2 className="text-xl font-semibold mb-2"> {t("assistant.open_more")}</h2> */}
           <div className="flex flex-col md:flex-row gap-4">
-          {documents.map((doc, index) => (
+          
+          {documents.map((doc, index,) => (
           <div
             key={index}
-            className="  p-4 rounded-lg w-full md:w-1/5   "
+            className="  p-4 rounded-lg w-full  md:w-1/5   "
           >
-            <p>{index + 1}. {doc.title}</p>
+
+<p class="px-4 w-full text-3xl font-bold self-start pb-7">{index + 1}</p> 
+<p class="px-4 w-full  self-start pb-7"> {doc.title}</p>
           </div>
         ))}
           </div>
@@ -81,4 +89,3 @@ const Assistant = ({ limit }) => {
 };
 
 export default Assistant;
-

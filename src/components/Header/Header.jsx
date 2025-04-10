@@ -14,31 +14,16 @@ const languages = [
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  // const [language, setLanguage] = useState("ru"); // По умолчанию русский
-  // const { t, i18n } = useTranslation();
+ 
   const { t, i18n } = useTranslation();
   const [currentLanguage, setCurrentLanguage] = useState(i18n.language);
-
-
-
-
-    // // Функция для смены языка
-    // const changeLanguage = (code) => {
-    //   i18n.changeLanguage(code);
-    //   localStorage.setItem("language", code); // Сохранение языка
-    // };
-
+ 
     const [language, setLanguage] = useState(localStorage.getItem("language") || "ru");
   
     useEffect(() => {
       i18n.changeLanguage(language);
     }, [language, i18n]);
   
-    // const changeLanguage = (code) => {
-    //   setLanguage(code);
-    //   localStorage.setItem("language", code);
-    // };
-
     const changeLanguage = (code) => {
       i18n.changeLanguage(code).then(() => {
         setCurrentLanguage(code);
@@ -46,7 +31,6 @@ const Header = () => {
       });
     };
 
-    // Десктопное меню с переводами
   const desktopMenu = (
     <nav className="hidden md:flex text-white text-sm gap-8 font-normal mx-10 list-none">
       <NavLink
@@ -69,45 +53,19 @@ const Header = () => {
       >
         <li className="cursor-pointer">{t("header.info")}</li>
       </NavLink>
+
+      <NavLink
+        to="/about"
+        className={({ isActive }) => isActive ? "text-gray-700 font-bold" : "hover:text-gray-200"}
+      >
+        <li className="cursor-pointer">{t("header.about")}</li>
+      </NavLink>
     </nav>
   );
 
 
-  // Мобильное меню с переводами
-  // const mobileMenu =
-  //  menuOpen && (
-  //   <nav className="fixed inset-0 bg-gradient-to-r from-[#2EA481] to-[#1DA29F] flex justify-end z-50">
-  //     <div className="w-full sm:w-full px-14 py-7">
-  //       {/* ... кнопка закрытия ... */}
-  //       <ul className="text-white text-lg gap-8 font-sm flex-col items-start pl-0 w-full text-start block mt-10">
-  //         <NavLink to="/" onClick={() => setMenuOpen(false)}>
-  //           <li className="cursor-pointer py-3">{t("header.calculator")}</li>
-  //         </NavLink>
-  //         <NavLink to="/templates" onClick={() => setMenuOpen(false)}>
-  //           <li className="cursor-pointer py-3">{t("header.generator")}</li>
-  //         </NavLink>
-  //         <NavLink to="/info" onClick={() => setMenuOpen(false)}>
-  //           <li className="cursor-pointer py-3">{t("header.info")}</li>
-  //         </NavLink>
-  //       </ul>
-  //       <div className="flex space-x-5 items-center">
-  //           {languages.map(({ code, label }) => (
-  //             <button
-  //               key={code}
-  //               className={`text-white font-medium ${currentLanguage === code ? "underline" : " / "}`}
-  //               onClick={() => changeLanguage(code)}
-  //             >
-  //               {label}
-  //             </button>
-  //           ))}
-  //         </div>
-  //     </div>
-  //   </nav>
-  // );
 
 
-{/* Мобильное меню (SideBar) */}
-// {
     const mobileMenu =
 
   menuOpen && (
@@ -144,6 +102,9 @@ const Header = () => {
         </NavLink>
         <NavLink to="/info" onClick={() => setMenuOpen(false)}>
           <li className="cursor-pointer py-3">{t("header.info")}</li>
+        </NavLink>
+        <NavLink to="/about" onClick={() => setMenuOpen(false)}>
+          <li className="cursor-pointer py-3">{t("header.about")}</li>
         </NavLink>
       </ul>
 

@@ -213,9 +213,16 @@ const downloadDoc = () => {
  
       <div className="flex px-6 justify-between pt-10 md:flex-row flex-col">
         <div className="w-full md:w-2/12 px-0 mx-0">
-          <span className="font-bold">Введите данные для заявления</span>
+        <span className="font-bold mt-10 hidden md:block">Введите данные для заявления</span>
           <p className="text-center mt-20">{form.description1}</p>
           <p className="text-center mt-10">{form.description2}</p>
+          <p className="text-center mt-10">{form.description8}</p>
+          <p className="text-center mt-10">{form.description3}</p>
+          <p className="text-center mt-10">{form.description4}</p>
+          <p className="text-center mt-10">{form.description5}</p>
+          <p className="text-center mt-10">{form.description6}</p>
+          <p className="text-center mt-10">{form.description7}</p>
+          <span className="font-bold mt-10 block md:hidden">Введите данные для заявления</span>
         </div>
 
         <form onSubmit={handleSubmit} className="px-2 rounded-lg w-full md:w-7/12 sm:w-7/12 py-16">

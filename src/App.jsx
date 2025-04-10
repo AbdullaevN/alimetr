@@ -19,6 +19,7 @@ import ChangeOfAlimony from "./components/Info/ChangeOfAlimony";
 import PastPeriods from "./components/Info/PastPeriods";
 import Info from "./components/Info/Info";
 import Assistant from "./components/Assistent/Assistant";
+import About from "./pages/About";
 import Inofficial from "./components/Info/Inofficial";
 import { HelmetProvider } from "react-helmet-async";
 
@@ -36,7 +37,7 @@ function App() {
         <Route path="/info" element={<Info />} />
         <Route path="/templates" element={<Assistant />} />
          <Route path="/templates/:id" element={<FormPage />} />
-
+         <Route path="/about" element={<About />} />
         <Route path="/docs-preparation" element={<Preparation />} />
         <Route path="/next-steps" element={<Ready />} />
         <Route path="/need-lawyer" element={<NeedLawyer />} />
