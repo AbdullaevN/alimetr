@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { formsData } from "../Form/formsData"; 
+import { useTranslation } from "react-i18next";
  
 const ApplicationBlock = ({ form }) => {
   return (
@@ -32,9 +33,12 @@ const ApplicationBlock = ({ form }) => {
   );
 };
 
+ 
+
 const Assistant = ({ limit }) => {
-   const displayedItems = limit ? formsData.slice(0, limit) : formsData;
-  //  const { t, i18n } = useTranslation();
+  const {t} = useTranslation()
+  const displayedItems = limit ? formsData.slice(0, limit) : formsData;
+  const documents = t("assistant.documents", { returnObjects: true });
 
 
   return (
@@ -42,35 +46,29 @@ const Assistant = ({ limit }) => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-white text-start">
         <div className="py-5 md:pb-10 flex flex-col md:flex-row justify-between items-center text-center md:text-start">
           <h1 className="text-2xl md:text-5xl font-bold">
-            Помощник в подготовке документов
+          {t("assistant.title")}
           </h1>
-       
+
           <Link to={'/templates'} className="mt-4 md:mt-0">
             <button className="text-sm hidden md:flex cursor-pointer">
-              Открыть больше
+              {t("assistant.open_more")}
             </button>
           </Link>
         </div>
+
         <div className="mt-4">
-  <h2 className="text-xl font-semibold mb-2">Как получить нужный документ?</h2>
-  <div className="flex flex-col md:flex-row gap-4">
-    <div className=" bg-opacity-10 p-4 rounded-lg w-full md:w-1/5">
-      <p>1. Заполнить анкету</p>
-    </div>
-    <div className=" bg-opacity-10 p-4 rounded-lg w-full md:w-1/5">
-      <p>2. Проверить документ. Вы можете поправить его сами.</p>
-    </div>
-    <div className=" bg-opacity-10 p-4 rounded-lg w-full md:w-1/5">
-      <p>3. Распечатать документ</p>
-    </div>
-    <div className=" bg-opacity-10 p-4 rounded-lg w-full md:w-1/5">
-      <p>4. Подписать документ</p>
-    </div>
-    <div className=" bg-opacity-10 p-4 rounded-lg w-full md:w-1/5">
-      <p>5. Финишная прямая. Документы у Вас в руках!</p>
-    </div>
-  </div>
-</div>
+          {/* <h2 className="text-xl font-semibold mb-2"> {t("assistant.open_more")}</h2> */}
+          <div className="flex flex-col md:flex-row gap-4">
+          {documents.map((doc, index) => (
+          <div
+            key={index}
+            className="  p-4 rounded-lg w-full md:w-1/5   "
+          >
+            <p>{index + 1}. {doc.title}</p>
+          </div>
+        ))}
+          </div>
+        </div>
 
         <div className="flex flex-col md:flex-wrap">
           {displayedItems.map((form) => (
@@ -83,3 +81,4 @@ const Assistant = ({ limit }) => {
 };
 
 export default Assistant;
+

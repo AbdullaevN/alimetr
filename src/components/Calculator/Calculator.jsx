@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import fon from '../../assets/calc-fon.png';
+import { useTranslation } from "react-i18next";
 
 const SalaryCalculator = () => {
   const [region, setRegion] = useState("");
@@ -11,6 +12,15 @@ const SalaryCalculator = () => {
   const [regionDetail, setRegionDetail] = useState("");
   const [childrenDetail, setChildrenDetail] = useState("");
   const [incomeDetail, setIncomeDetail] = useState("");
+
+  const handleInputChange = (e) => {
+    setIncome(e.target.value);
+  };
+  
+  
+  const {t} = useTranslation()
+
+
 
   const calculate = () => {
     let incomeValue = parseInt(income) || 0;
@@ -112,7 +122,7 @@ const SalaryCalculator = () => {
       className="mt-1 block w-full p-2 pr-8 border border-gray-300 rounded-xl bg-[#F7F7FD] appearance-none text-[#9D9D9D]"
     >
       <option className="text-white" value="">
-        Выберите регион
+      {t("calculate.region")}
       </option>
       <option value="1">Бишкек</option>
       <option value="2">Ош</option>
@@ -150,10 +160,10 @@ const SalaryCalculator = () => {
     onChange={(e) => setChildren(e.target.value)}
     className="mt-1 block w-full p-2 pr-8 border border-gray-300 rounded-xl bg-[#F7F7FD] appearance-none text-[#9D9D9D]"
   >
-    <option value="">Выберите количество детей</option>
-    <option value="1">1 ребенок</option>
-    <option value="2">2 ребенка</option>
-    <option value="3">3 и более детей</option>
+    <option value="">{t("calculate.countChild")}</option>
+    <option value="1">{t("calculate.count1")}</option>
+    <option value="2">{t("calculate.count2")}</option>
+    <option value="3">{t("calculate.count3")}</option>
   </select>
 
   {/* Добавляем стрелку */}
@@ -181,9 +191,9 @@ const SalaryCalculator = () => {
     <div className="mb-4">
       <input
         type="text"
-        placeholder="Зарплата в сомах"
+        placeholder={t("calculate.salary")}
         value={income}
-        readOnly
+         onChange={handleInputChange}
         className="mt-1 block w-full p-2 border border-gray-300 rounded-xl bg-[#F7F7FD]"
       />
     </div>
@@ -206,7 +216,7 @@ const SalaryCalculator = () => {
       onClick={calculate}
       className="mt-2 w-full p-3 bg-[#FFFFFF] text-[#121212] rounded-2xl cursor-pointer transition"
     >
-      Рассчитать
+      {t("calculate.calc")}
     </button>
   </div>
 
@@ -219,9 +229,9 @@ const SalaryCalculator = () => {
       backgroundRepeat: 'no-repeat',
     }}
   >
-    <div className="flex flex-col justify-center items-center mb-4 pb-10 pt-5 text-center">
+    <div className="flex flex-col justify-center items-center mb-4 pb-10 pt-15 text-center">
       <h1 className="md:text-sm text-xl text-[#6A6A6A]">
-        Сумма выплат составляет:
+       {t("calculate.amount")}
       </h1>
       <span className="text-lg md:text-4xl font-bold text-[#121212]">
         {result}
@@ -231,23 +241,23 @@ const SalaryCalculator = () => {
     <table className="w-full mx-auto mt-6">
       <tbody className="flex flex-wrap justify-between px-3 md:px-10">
         <tr className="flex w-full">
-          <td className="font-medium w-full text-left items-center flex">Регион</td>
+          <td className="font-medium w-full text-left items-center flex">{t("calculate.regionShow")}</td>
           <td className="py-2 w-full text-end">{regionDetail}</td>
         </tr>
         <tr className="flex w-full items-center">
-          <td className="font-medium w-full text-left">Количество детей</td>
+          <td className="font-medium w-full text-left">{t("calculate.countChildShow")}</td>
           <td className="py-2 w-full text-right">{childrenDetail}</td>
         </tr>
         <tr className="flex w-full">
-          <td className="font-medium w-full text-left">Зарплата алиментоплательщика</td>
+          <td className="font-medium w-full text-left">{t("calculate.alimonyPayer")}</td>
           <td className="py-2">{incomeDetail}</td>
         </tr>
       </tbody>
     </table>
 
     {/* <p className="text-[#6A6A6A] text-xs mt-4 md:w-4/12 w-10/12 flex items-start md:left-[-167px] left-[-30px] relative top-[76px]"> */}
-    <p className="mt-14 text-[#6A6A6A] text-xs">
-      *Данная сумма является предположительной, точная сумма выносится судом
+    <p className="  text-[#6A6A6A] text-xs mt-[35%] md:mt-[40%]">
+      {t("calculate.note")}
     </p>
   </div>
 </div>

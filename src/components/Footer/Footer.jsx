@@ -5,9 +5,8 @@ import { useTranslation } from "react-i18next";
 
 const Footer = () => {
 
-  const {t, i18n} = useTranslation()
-  // const [language, setLanguage]
-
+  const {t} = useTranslation()
+ 
 
 
   return (
@@ -31,7 +30,7 @@ const Footer = () => {
           </div>
 
          <div className="flex footer-section flex-col items-start mb-4 md:mb-0 w-full md:w-auto">
-          <h3 className="font-semibold text-lg w-full">Мы в социальных сетях</h3>
+          <h3 className="font-semibold text-lg w-full">{t("footer.social")}</h3>
           <ul className="mt-2 space-y-2 w-full">
             <li><a href="#" className="text-white hover:text-gray-400">Instagram</a></li>
             <li><a href="#" className="text-white hover:text-gray-400">Facebook</a></li>
@@ -40,7 +39,7 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col items-start mb-4 md:mb-0 w-full md:w-auto">
-  <h3 className="font-semibold text-lg w-full">Навигация</h3>
+  <h3 className="font-semibold text-lg w-full">{t("footer.navigation")}</h3>
   <ul className="mt-2 space-y-2 w-full">
     <li><Link to="/" className="text-white hover:text-gray-400">{t("header.calculator")}</Link></li>
     <li><Link to="/templates" className="text-white hover:text-gray-400">{t("header.generator")}</Link></li>
