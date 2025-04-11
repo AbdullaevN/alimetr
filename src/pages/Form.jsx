@@ -18,6 +18,17 @@ import ChildInput from "../components/Form/ChildInput";
 import html2canvas from "html2canvas";
 import { useTranslation } from "react-i18next";
 
+
+
+
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import { MyDocument } from "../utils/DocumentTemplate";
+import { generatePDF } from '../utils/pdfGenerator.jsx';
+
+
+
+
+
 const FormPage = () => {
   const { id } = useParams();
   const [witnesses, setWitnesses] = useState([]);
@@ -153,30 +164,66 @@ const downloadAsDoc = () => {
 };
  
 
+// const downloadWithReactPDF = async () => {
+//   try {
+//     const { pdf } = await import('@react-pdf/renderer');
+    
+//     // Создаем временный div для обработки HTML
+//     const tempDiv = document.createElement('div');
+//     tempDiv.innerHTML = modalContent;
+    
+//     // Получаем чистый текст с сохранением структуры
+//     const plainText = tempDiv.textContent || tempDiv.innerText || '';
+    
+//     const blob = await pdf(
+//       <MyDocument content={plainText} />
+//     ).toBlob();
+    
+//     const url = URL.createObjectURL(blob);
+//     const link = document.createElement('a');
+//     link.href = url;
+//     link.download = 'document.pdf';
+//     document.body.appendChild(link);
+//     link.click();
+//     document.body.removeChild(link);
+    
+//     setTimeout(() => URL.revokeObjectURL(url), 100);
+    
+//   } catch (error) {
+//     console.error('PDF generation error:', error);
+//     alert('Ошибка при создании PDF');
+//   }
+// };
 
 
-const downloadDoc = () => {
-  const input = document.createElement("div");
-  input.innerHTML = modalContent;
-  document.body.appendChild(input);
 
-   input.style.margin = "20px 40px";
-  input.style.fontSize = "14px";  
-  input.style.lineHeight = "1.6";  
 
-  html2canvas(input).then((canvas) => {
-    const imgData = canvas.toDataURL("image/png");
-    const pdf = new jsPDF();
-    const imgProps = pdf.getImageProperties(imgData);
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
-    pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
-    pdf.save("document.pdf");
+ 
 
-    document.body.removeChild(input);
-  });
-};
+
+// const downloadDoc = () => {
+//   const input = document.createElement("div");
+//   input.innerHTML = modalContent;
+//   document.body.appendChild(input);
+
+//    input.style.margin = "20px 40px";
+//   input.style.fontSize = "14px";  
+//   input.style.lineHeight = "1.6";  
+
+//   html2canvas(input).then((canvas) => {
+//     const imgData = canvas.toDataURL("image/png");
+//     const pdf = new jsPDF();
+//     const imgProps = pdf.getImageProperties(imgData);
+//     const pdfWidth = pdf.internal.pageSize.getWidth();
+//     const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+//     pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+//     pdf.save("document.pdf");
+
+//     document.body.removeChild(input);
+//   });
+// };
   const closeModal = () => {
     setIsModalOpen(false);
   };
@@ -185,6 +232,15 @@ const downloadDoc = () => {
 
   const formTexts = t(`forms.${form.id}`, { returnObjects: true });
 
+
+// Удалите старые функции downloadDoc и downloadWithReactPDF
+// И замените их этим кодом:
+
+
+
+// В компоненте:
+const downloadDoc = () => generatePDF(modalContent, false);
+const downloadWithReactPDF = () => generatePDF(modalContent, true);
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-white">
       <div className="text-sm px-6 py-2">
@@ -294,13 +350,23 @@ const downloadDoc = () => {
         </form>
       </div>
   
-      <Modal
+      {/* <Modal
         isOpen={isModalOpen}
         onClose={closeModal}
         modalContent={modalContent}
         onDownloadDoc={downloadAsDoc}  
         onDownloadPDF={downloadDoc}  
-      />
+        onDownloadReactPDF={downloadWithReactPDF}
+
+      /> */}
+      <Modal
+  isOpen={isModalOpen}
+  onClose={closeModal}
+  modalContent={modalContent}
+  onDownloadDoc={downloadAsDoc}  
+  onDownloadPDF={downloadDoc}  // Используем обновленную функцию
+  onDownloadReactPDF={downloadWithReactPDF} 
+/>
     </div>
   );
   
