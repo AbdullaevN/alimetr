@@ -27,8 +27,9 @@ const About = () => {
             <p className="mb-4">{t("about.description1")}</p>
             <p className="mb-4">{t("about.description2")}</p>
             <p className="mb-4">{t("about.description3")}</p>
+            <p className="mb-4 font-bold">{t("about.description4")}</p>
 
-            <ul className="list-disc list-inside space-y-2 mb-4">
+            <ul className="list-none list-inside space-y-2 mb-4">
               <li>{t("about.feature1")}</li>
               <li>{t("about.feature2")}</li>
               <li>{t("about.feature3")}</li>
