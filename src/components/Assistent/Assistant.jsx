@@ -4,6 +4,8 @@ import { formsData } from "../Form/formsData";
 import { useTranslation } from "react-i18next";
  
 const ApplicationBlock = ({ form }) => {
+  const { t } = useTranslation();
+  const formTexts = t(`forms.${form.id}`, { returnObjects: true });
   return (
     <div className="w-full p-4">
       <div className="flex flex-col gap-4 md:gap-3 justify-end py-4 items-center md:items-end">
@@ -12,11 +14,12 @@ const ApplicationBlock = ({ form }) => {
         <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-25 pt-4 w-full md:w-8/12">
   <Link to={`/templates/${form.id}`} className="min-w-[30%] md:min-w-[200px] max-w-full">
     <h2 className="text-lg md:text-xl font-bold text-white uppercase break-words">
-      {form.title}
+    {formTexts.title}
     </h2>
   </Link>
-  <p className="text-white text-base md:text-sm break-words flex-1">
-    {form.description}
+  <p className=" text-base md:text-xl break-words flex-1">
+  {formTexts.description}
+  {/* <p>{formTexts.description1}</p> */}
 
   </p>
 </div>
@@ -57,13 +60,12 @@ const Assistant = ({ limit }) => {
       </div>
 
         <div className="mt-4">
-        <p class="px-4 text-1xl font-bold self-start pb-7">
+        <p className="px-4 text-1xl font-bold self-start pb-7">
         {t("assistant.title1")}</p> 
-        <p class="px-4 w-full text-1xl  font-bold self-start pb-7">
+        <p className="px-4 w-full text-1xl  font-bold self-start pb-7">
         {t("assistant.title2")}</p> 
 
-          {/* <h2 className="text-xl font-semibold mb-2"> {t("assistant.open_more")}</h2> */}
-          <div className="flex flex-col md:flex-row gap-4">
+           <div className="flex flex-col md:flex-row gap-4">
           
           {documents.map((doc, index,) => (
           <div
@@ -71,8 +73,8 @@ const Assistant = ({ limit }) => {
             className="  p-4 rounded-lg w-full  md:w-1/5   "
           >
 
-<p class=" w-full text-3xl font-bold self-start pb-7">{index + 1}</p> 
-<p class=" w-full  self-start pb-7"> {doc.title}</p>
+<p className=" w-full text-3xl font-bold self-start pb-7">{index + 1}</p> 
+<p className=" w-full  self-start pb-7"> {doc.title}</p>
           </div>
         ))}
           </div>

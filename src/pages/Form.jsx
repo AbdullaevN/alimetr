@@ -16,12 +16,15 @@ import ChildInput from "../components/Form/ChildInput";
 
  import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import { useTranslation } from "react-i18next";
 
 const FormPage = () => {
   const { id } = useParams();
   const [witnesses, setWitnesses] = useState([]);
   const [witnessName, setWitnessName] = useState("");
   const [witnessStatement, setWitnessStatement] = useState("");
+
+
 
   const addWitness = () => {
     if (witnessName
@@ -73,11 +76,7 @@ const FormPage = () => {
   if (!form) {
     return <h2 className="text-white text-center mt-10">Форма не найдена</h2>;
   }
-
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFormData((prev) => ({ ...prev, [name]: value }));
-  // };
+ 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -91,15 +90,10 @@ const FormPage = () => {
     setChildrenCount(parseInt(e.target.value, 10));
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   generateDoc(formData);
-  // };
-
+ 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Включаем свидетелей в formData перед генерацией документа
-    generateDoc({ ...formData, witnesses });
+     generateDoc({ ...formData, witnesses });
   };
 
 
@@ -166,10 +160,9 @@ const downloadDoc = () => {
   input.innerHTML = modalContent;
   document.body.appendChild(input);
 
-  // Adjust styles before rendering to canvas
-  input.style.margin = "20px 40px";
-  input.style.fontSize = "14px"; // Adjust text size
-  input.style.lineHeight = "1.6"; // Improve text readability
+   input.style.margin = "20px 40px";
+  input.style.fontSize = "14px";  
+  input.style.lineHeight = "1.6";  
 
   html2canvas(input).then((canvas) => {
     const imgData = canvas.toDataURL("image/png");
@@ -188,6 +181,10 @@ const downloadDoc = () => {
     setIsModalOpen(false);
   };
 
+  const { t } = useTranslation();
+
+  const formTexts = t(`forms.${form.id}`, { returnObjects: true });
+
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-white">
       <div className="text-sm px-6 py-2">
@@ -203,7 +200,7 @@ const downloadDoc = () => {
       <p className="text-center mt-8"></p>
       <div className="flex items-baseline md:flex-row flex-col px-6">
         <h1 className="text-3xl px-0 mx-0 py-4">{form.title}</h1>
-        <p className="mb-4 text-3xl">{form.description}</p>
+        {/* <p className="mb-4 text-3xl">{form.description}</p> */}
 
       </div>
       
@@ -214,14 +211,16 @@ const downloadDoc = () => {
       <div className="flex px-6 justify-between pt-10 md:flex-row flex-col">
         <div className="w-full md:w-2/12 px-0 mx-0">
         <span className="font-bold mt-10 hidden md:block">Введите данные для заявления</span>
-          <p className="text-center mt-20">{form.description1}</p>
-          <p className="text-center mt-10">{form.description2}</p>
-          <p className="text-center mt-10">{form.description8}</p>
-          <p className="text-center mt-10">{form.description3}</p>
-          <p className="text-center mt-10">{form.description4}</p>
-          <p className="text-center mt-10">{form.description5}</p>
-          <p className="text-center mt-10">{form.description6}</p>
-          <p className="text-center mt-10">{form.description7}</p>
+          <p className="text-center mt-20">{formTexts.description1}</p>
+          {/* {formTextsTexts.description} */}
+
+          <p className="text-center mt-10">{formTexts.description2}</p>
+          <p className="text-center mt-10">{formTexts.description3}</p>
+          <p className="text-center mt-10">{formTexts.description4}</p>
+          <p className="text-center mt-10">{formTexts.description5}</p>
+          <p className="text-center mt-10">{formTexts.description6}</p>
+          <p className="text-center mt-10">{formTexts.description7}</p>
+          <p className="text-center mt-10">{formTexts.description8}</p>
           <span className="font-bold mt-10 block md:hidden">Введите данные для заявления</span>
         </div>
 
