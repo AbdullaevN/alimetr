@@ -6,7 +6,7 @@ const About = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="py-12 ">
+    <section className="py-8 text-white px-6 md:px-10">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <h2 className="text-3xl sm:text-4xl font-bold text-white uppercase">
@@ -49,7 +49,7 @@ const About = () => {
             <img
               src={aboutImage}
               alt="About illustration"
-              className="w-full max-w-md rounded-xl shadow-lg object-cover"
+              className="w-full max-w-md rounded-xl  object-cover"
             />
           </div>
         </div>

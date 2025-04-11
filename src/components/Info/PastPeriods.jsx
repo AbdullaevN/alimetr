@@ -13,7 +13,7 @@ const PastPeriods = () => {
         <meta name="keywords" content={t('past_periods.meta_keywords')} />
       </Helmet>
 
-      <section className="py-8 text-white h-auto">
+      <section className="py-8 text-white px-6 md:px-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center lg:justify-between gap-8">
           
           <div className="lg:w-1/2">

@@ -3,7 +3,6 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Blog from "./pages/Blog";
 import Header from "./components/Header/Header";
-import FormsList from "./pages/FormsList";
 import FormPage from "./pages/Form";
 import Preparation from "./components/Info/Preparation";
 import Ready from "./components/Info/Ready";
@@ -24,20 +23,26 @@ import Inofficial from "./components/Info/Inofficial";
 import { HelmetProvider } from "react-helmet-async";
 
 import "./i18n";
-
+import ScrollToTop from "./utils/ScrollToTop";
+ 
  
 function App() {
   return (
     <HelmetProvider>
 
     <Router>
+    <ScrollToTop />
+
       <Header />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/info" element={<Info />} />
         <Route path="/templates" element={<Assistant />} />
          <Route path="/templates/:id" element={<FormPage />} />
+
          <Route path="/about" element={<About />} />
+
         <Route path="/docs-preparation" element={<Preparation />} />
         <Route path="/next-steps" element={<Ready />} />
         <Route path="/need-lawyer" element={<NeedLawyer />} />
@@ -49,6 +54,9 @@ function App() {
         <Route path="/change-alimony" element={<ChangeOfAlimony />} />
         <Route path="/unofficial-income" element={<Inofficial />} />
         <Route path="/past-payments" element={<PastPeriods />} />
+
+        {/* <Route path="/calc" element={<SalaryCalculator />} /> */}
+
 
         <Route path="*" element={<NotFound />} />
 

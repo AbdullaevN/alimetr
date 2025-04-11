@@ -10,13 +10,15 @@ import Assistant from "../components/Assistent/Assistant";
 import woman from "../assets/woman.png";
 import angular from "../assets/angular.png";
 import papers from "../assets/papers.png";
-import { useNavigate } from "react-router-dom";
-import { useRef } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useRef } from "react";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 
 const Home = () => {
   const salaryCalculatorRef = useRef(null);  
+  const location = useLocation();
+
   const {t} = useTranslation()
 
   const handleClick = () => {
@@ -25,6 +27,17 @@ const Home = () => {
       block: "start",
     });
   };
+
+
+  useEffect(() => {
+    if (location.hash === '#calculator') {
+      setTimeout(() => {
+        salaryCalculatorRef.current?.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }, 100); // Небольшая задержка для корректного скролла
+    }
+  }, [location]);
 
   return (
     <>
