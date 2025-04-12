@@ -46,41 +46,26 @@ const Modal = ({
         <div className="modal-body" dangerouslySetInnerHTML={{ __html: modalContent }} />
         
         <div className="modal-footer flex justify-between mt-4">
-          <button
-            onClick={onClose}
-            className="cursor-pointer px-4 py-3 text-sm mt-4 bg-gray-300 text-gray-800 rounded-2xl"
-          >
-            Закрыть
-          </button>
-          {/* <button
-            onClick={onDownloadPDF}
-            className="cursor-pointer px-4 py-3 text-sm mt-4 bg-[#65bec8] text-[#121212] rounded-2xl"
-          >
-            Скачать PDF (Image)
-          </button>    */}
-          <button
-            onClick={onDownloadDoc}
-            className="cursor-pointer px-4 py-3 text-sm mt-4 bg-[#65bec8] text-[#121212] rounded-2xl"
-          >
-            Скачать DOC
-          </button>
-          {/* {ReactPDFDownloadButton ? (
-            ReactPDFDownloadButton()
-          ) : (
-            <button
-              onClick={onDownloadReactPDF}
-              className="cursor-pointer px-4 py-3 text-sm mt-4 bg-[#65bec8] text-[#121212] rounded-2xl"
-            >
-              Скачать PDF (React)
-            </button>
-          )} */}
-          <button
-  onClick={onDownloadReactPDF}
+
+<button
+  onClick={onClose}
+  className="cursor-pointer px-4 py-3 text-sm mt-4 bg-gray-300 text-gray-800 rounded-2xl"
+>
+  Закрыть
+</button>
+<button
+  onClick={onDownloadPDF}
   className="cursor-pointer px-4 py-3 text-sm mt-4 bg-[#65bec8] text-[#121212] rounded-2xl"
 >
-  Скачать PDF (React)
+  Скачать PDF
+</button>   
+<button
+  onClick={onDownloadDoc}
+  className="cursor-pointer px-4 py-3 text-sm mt-4 bg-[#65bec8] text-[#121212] rounded-2xl"
+>
+  Скачать doc
 </button>
-        </div>
+</div>
       </div>
     </div>
   );
